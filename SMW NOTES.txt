@@ -1,0 +1,1233 @@
+SMW NOTES
+
+*****ACTIVE DIRECTORY
+active directory is a list of information about all network resources. It allows the admin to access and manage the resources.
+These resources include accounts, groups and network management services.
+Active directory is designed to be easily replicated so that several domain controllers can have a copy
+replication of domain controllers require similar schema
+ 
+
+	PURPOSE OF ACTIVE DIRECTORY
+` provides an information repository and lookup service for the different domains
+` creates a centralised management system for large networks to authenticate and authorise resource sharing
+` organises objects of a network into a non-physical hierarchical structure
+
+
+;COMPONENTS;
+
+	~ OBJECT CLASSES
+		these include user accounts, computers, printers. Everything is an object
+
+	~ ACTIVE DIRECTORY DOMAIN SERVICES
+		this is a program that allows network admins to manage and store information about objects like the different servers and services. Network admins can also enable authentication and authorisation of resource sharing 
+
+	~ DOMAIN CONTROLLER
+		only the domain controller can run AD DS. When AD DS is installed onto server, it becomes a domain controller. The domain controller also has a copy of the active directory
+		replication of domain controllers require similar schema
+		Domain controller cannot have local accounts. All accounts would become domain accounts
+
+
+
+	~ PRIMARY DOMAIN CONTROLLER
+
+
+	~ MEMBER SERVER
+		regular server in the domain but no AD DS
+
+	~ DOMAIN (container)
+		this is the overarching container that has all servers, clients, and all objects on the same network
+		when a few domains have the same schema, they have a trusted relationship
+		Because of the trusted relationship between all domains within a tree, any one domain has access to all resources of all others
+
+			#PURPOSE OF A DOMAIN
+				> to establish a set of information to be replicated from on DC to another
+				> to make management of objects more efficient
+				
+
+	~ SCHEMA (container)
+		a schema holds the user account object
+
+	~ USER ACCOUNT
+		user account holds records like username and password
+
+	~ ATTRIBUTE
+		user account is the object. Username and password are atributes of the user account
+
+	~ TREE (container)
+		contains one or more domains that are related to one another. Trees have a contiguous namespace
+
+	~ FOREST (container)
+		a forest consists of one or more trees that are in a common relationship. It provides a means to relate tress that have a disjointed namespace
+
+	~ GLOBAL CATALOG
+		stores information about every object within a forest
+
+			#PURPOSE OF GLOBAL CATALOG
+				> provides lookup and access to all objects in the forest
+				> holds a copy of the most used attributes for quick access
+				> 
+
+	~ GLOBAL CATALOG SERVER
+		the first DC configured in a forest becomes the global catalog server. There can be several global catalog servers
+
+	~ DOMAIN NAME SERVICE SERVER
+		active directory must have a DNS server
+
+		#NAMESPACE
+			> contiguous namespace: child object contains name of parent object 
+				eg google.products.com
+			> disjointed namespace: child object does not resemble name of parent 
+				eg Gproducts.com (child of google.com)
+
+
+
+	~ ORGANISATIONAL UNIT (OU)	????
+		an OU is a grouping or related objects within a domain
+		OU can be nested on other OUs
+		OUs should be minimised because they take up CPU power
+		only one account can be in one OU
+
+
+	~ 
+
+
+
+
+	
+
+
+
+
+
+
+
+*****SUBNETTING
+subnetting is the process of partitioning one physical network into multiple logical sub-networks. This is done by rellocating bits from an IP address' local host portion to the network portion.
+This conserves IP addresses and allows large networks to be divided into smaller groups for smaller management
+
+When a subnet mask is 255.255.0.0 it means that the first 16 bits of the 32 bit IP address is used as network ID. The remaining 16 bits is used as client ID. 
+
+VALUE OF FIRST OCTET 		0 - 127 ` | 128 - 191	| 192 - 223
+DEFAULT SUBNET MASK 		255.0.0.0 | 255.255.0.0 | 255.255.255.0
+
+
+
+
+*****CIPHER COMMAND
+the cipther command is used in windows to encrypt, decrypt or delete a folder by overwritting it.
+
+eg
+	cipher /w:____(specified dirve letter):\_______(specified path)
+		this will delete the folder/file in the specified path, in the specified drive
+
+	cipher /e _____(specified path)
+		this will encrypt the file in the specified path
+
+	cipher /d _____(specified path)
+		this will decrypt the file in the specified path
+
+
+
+
+
+
+*****MICROSOFT SECURITY GUIDELINES SINCE 2002
+in 2002 Microsoft changed their focused to security with these rules as guidelines
+	- isolation and resiliency
+	- updating
+	- quality
+	- access control and authentication
+
+	>ISOLATION AND RESILIENCY
+		focus on isolating workstations so if one gets affected, it wouldn't have adverse effects on other PCs in the network
+		This can be implemented using access control lists. Network architecture can also be configured to improve isolation
+
+	>UPDATING
+		updates and patches are the primary way of protecting against vulnerabilities. Implemented through automating update programs such as Microsoft Baseline Security Analyser (MBSA) and Windows Server Update Service (WSUS). 
+		MBSA scans would recommend suggestions for fixing security vulnerabilities such as insecure system configurations and missing updates.
+		WSUS gives system administrators a console to manage and distribute windows updates.
+
+	>QUALITY
+		to maintain quality services, Microsoft follows its best practices in all phases of software development.
+		Software is always tested before development to ensure quality. For instance Windows Server OS has a Best Practice Analyser tool that checks for any configurations that can be ammended to improve efficiency and security 
+
+	>ACCESS CONTROL AND AUTHENTICATION
+		authentication can be implemented using passwords and public key infrastructure (PKI).
+		Access control can be implemented in windows servers by using Active Directory Rights Management Services (AD RMS)
+		AD RMS enables web applications to encrypt, decrypt and acquire certicates for data transfer.
+
+
+
+
+
+
+******TRUSTED COMPUTING
+trusted computing is based on 3 principals
+	- computers need to be reliable
+	- software must be equally as reliable
+	- service components have to be dependable
+
+these are all to emphasise security over features
+
+The goals of trusted computing are
+	- security
+	- privacy
+	- business integrity
+
+
+
+******TRUSTED CLOUD
+Microsoft trusted cloud is a long term initiative based on 4 principals
+	- security
+	- reliability
+	- compliance
+	- transparency
+
+
+
+
+*****SECURE CODING
+Microsoft also trains their engineers in
+	- writing secure code
+	- specialised testing techniques
+	- write documentation with security in mind
+
+
+
+
+*****SECURITY CONFIGURATION WIZARD (SCW)
+SCW is an analysing and configuring tool for windows server 2008 - 2012
+Unlike BPA, it gives the admin the option to immdediate apply suggestions
+	SCW CAN
+` disable uneeded servcies and software
+` close unsused ports
+` 
+
+
+
+*****DOMAIN LOCAL ACCOUNTS
+when you create a user account in windows, you can create a local user account or a domain account
+Domain account: an account created within a domain when active directory is enabled
+Local account : the regular account created in windows that doesn't have active directory
+
+Local Account/Domain Account Login
+	• Local account is created when the computer is set up
+	• By default, is able to login to all domain accounts
+	• Login to local user account
+		○ {localhost name}\{user}
+		○ .\{user}
+	• Login to domain user account
+		○ {domain name}\{user}
+		○ {full domain name}\{user}
+		○ {user}@{full domain name}
+.\administrator (a possible way to log in to windows 8.1 but not a domain controller. Security by default disable all local accounts when upgraded to a domain controller.)
+
+
+
+
+
+
+*****USER ACCOUNT SECURITY GROUPS
+user accounts can be placed into several types of groups.
+Each group has a specified scope. 
+Scope is the reach of a group for gaining access to resources in Active Directory
+	TYPES OF GROUPS
+` machine Local
+` domain local
+` global 
+` universal
+
+	| SECURITY GROUP VS OU
+		- group policies are applied to OUs
+		- resource permissions are applied to security groups
+
+	| MACHINE LOCAL GROUP
+		machine local groups contain local accounts that do not have active directory implemented
+
+	| DOMAIN LOCAL GROUP
+		domain local groups are created to assign access to resources to a group of domain accounts
+		
+		scope: the domain it exists in
+
+	| GLOBAL GROUP
+		contains accounts from a domain. But a global group can be a member of a domain group in the same or another domain
+		global groups can be nested
+		a global group can be converted to a universal group if there are no global groups nesting it
+		global groups are good for giving accounts within a domain, access to resources in another domain because global groups can have access to other domains
+
+		scope: the domain it exists in, and resources in other domains
+
+	| UNIVERSAL GROUP
+		in a universal group, accounts from any domain can be members and be assigned permission to resources in any domain
+		universal groups provide a means to access any resource in the tree
+
+		scope: all domains
+
+
+
+
+
+*****AGUDLP
+
+A - account
+G - global
+U - universal
+DL - domain local
+
+
+
+
+
+
+
+
+****READ ONLY DOMAIN CONTROLLER (RODC)
+a read only domain controller cannot be replicated. It is useful for authentication
+
+
+
+*****DOMAIN NAME SERVICE (DNS)
+dns server is used to resolve IP addresses to domain name.
+
+
+	#FORWARD LOOKUP ZONE
+		the forward lookup zone converts domain name to IP address
+
+	#REVERSE LOOKUP ZONE
+		the reverse lookup zone converts IP address to domain name
+
+
+	#PRIMARY DNS SERVER
+		the primary DNS server holds the original zone table database. It is usually behind firewalls and given the most protection to ensure that secondary servers would also have an uncompromised version of the zone database
+		any changes to make for DNS must be done on the primary DNS server
+
+	#SECONDARY DNS SERVER
+		the secondary DNS server has a copy of the zone database from the primary server
+		this ensures redundancy in the event the primary server goes down 
+		the secondary server is put outside the private network to respond to public queries
+		the secondary server also prevents congestion of the primary server
+		secondary server also improves performance by reducing latency for clients far from the primary DNS server
+
+	#ROOT HINTS
+		root hints is a table of addresses of root DNS servers
+
+	#ROOT DNS SERVER
+		root dns servers return the address to the authoritative DNS server
+
+	#AUTHORITATIVE DNS SERVER
+		the authoritative dns server is the original DNS server that the server configured
+		this dns server has the addresses inside its local data (see dns photo)
+
+	#DNS FORWARDER FUNCTION
+		DNS servers can have forwarder function enabled. Instead of using root hints to find the root DNS server, the DNS server will pass the query to another external DNS server. If the external DNS server canot resolve the address, it will pass the query to another external DNS server. This process continues recursively until a DNS server can resolve the address
+
+	#USING FORWARDERS VS ROOT HINTS
+		forwading is faster than using root hints however it is less secure because the client doesn’t know where the query is being forwarded to. This is a security flaw because if forwarded to an attacker’s DNS server, the attacker can resolve the address to his malicious domain
+		++DNS FILTERING++
+		However DNS forwarding still can enable DNS filtering
+		DNS filtering not only protects the client from going to the bad site, but also prevents the attacker from going to the client. The DNS server would send the attacker to a dead end instead of the client.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Remote login is useful because sometimes the server is physically inaccessible, so the ability to control the server remotely maintains the physical security of the server. However, this is a major vulnerability because an attacker could bypass all physical security and access the server only through the remote desktop.
+
+
+
+Client accounts that connect to a domain would inherit the group policies that the server’s domain controller has set.
+
+
+Updated server OS also means should use updated client OS. WinXP needs 2016 server to lower all its security settings in order to work with 2016 server.
+
+
+In OU, all objects can only belong to 1 OU. Unique membership for each object. But security group can have objects belong to several 
+
+It’s good practice to use the cipher command to physically delete files because normal delete means that the data is only unallocated. This is a major flaw of EFS however it requires low level programming.
+
+
+The roles and permissions of a member server is defined by the domain controllers
+
+
+the first DC configured in a forest becomes the global catalog server. There can be several global catalog servers
+
+
+Raising functional level enables more features. All domain controllers in the domain must be updated to the same level in order for the entire server domain to use the new features. 
+
+
+SCM is used only for servers before 2016. SCW is for 2016 and later
+
+domain computer means server and client
+
+mutual trust relationship means all involved PCs are in the same forest
+
+user cannot see shared folder because of group policy
+
+host information is defined in a resource record for DNS
+
+Read Only DC (RODC) is one of the elements to reduce DC to DC replication overhead
+
+windows defender is new in windows server 2016
+
+must have DNS server in the domain for active directory
+
+server core is good for dmz because it has a smaller attack surface kernel
+
+resource permission settings are recommended to be directly associated with domain local group
+
+in an active directory there may be more than one primary doain controller
+
+co-owner is not a shared folder permission in windows server 2016
+
+full control and take ownership special	permissions in NTFS  allow changing of ownership for folders
+
+locked account is different from disabled account because it can be reactivated to normal state automatically
+
+HKEY_USERS	root key may contain the most wanted information for malpractice investigation
+
+
+
+Within an Active Directory, devices should ideally communicate with one another using domain name instead of IP address because IP address is dynamic and an keep changing.
+
+
+
+Best practices analyser will check the server if it complies with a set of rules. These rules are based on
+-	Configuration
+-	Security
+-	Predeployment
+-	Performance
+-	BPA prerequisites
+
+
+
+@@@@@@@@@@@@	FOR MST  @@@@@@@@@@@@@@@@
+
+===== protecting member server
+> ensure firewall in enabled
+> turn on windows defender
+> turn on automatic updates
+> run MBSA
+> run SCM
+> enable bitlocker
+> group policies to specify which users can login to the server
+> enable audit lock
+
+
+
+=====protecting domain controller
+> 
+
+
+
+
+===== if DNS server has no root hints, it is because it is using forwarder function or   zone
+
+
+===== security flaw of DNS forwarder
+> if DNS server uses forwarder, you cannot manage the security settings of the DNS forwarded to
+> all responses are unauthoratitive
+
+
+
+==== security advantage of DNS forwarder 
+> customised local DNS forwarder has DNS filtering
+
+
+
+
+==== security advantage of SCM
+> template can be easily exported for deployment in GPO
+> can download up to date template
+> can maintain databse of templates
+
+
+
+
+==== BPA disadvantages
+> BPA is only available for server, not client
+> BPA only gives security suggestions. It doesn't fix or reconfigure security settings
+> 
+
+
+
+
+
+
+==== 3 trees
+
+==== ask Nathan for the answers for tree forest questions in last year MST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+XXXXXXXXXXXXXXXX  TERM2  XXXXXXXXXXXXXXXX
+
+
+
+
+
+
+>GROUP POLICIES AND GPO<
+
+read up what a site is from group policies
+
+there should be separate GPOs to manage different objects. Eg. one GPO to manage firewall, one GPO to mnaage user accounts
+this makes it easier to manage. Cuz if you put all settings in one GPO then when u only want to edit firewall, you have to open the GPO file that has both firewall and user accounts then you might accidentally affect the user accounts one
+
+1 domain 1 PC
+
+1 OU 1 PC. But then there can be nested OUs. Why is nested OU bad ?
+
+should set GPO for local computer as well in case the active directory fails, then PC will not use default settings. default settings may not be the most secure
+
+GPO HIEARCHY
+1. site
+2. domain
+3. OU
+4. local computer
+
+the lower rank's settings will always override the higher rank
+
+user policies preceeds computer policies. All computer policies will be loaded before user.
+To make computer policy to preceed user policy, enable loopback option to computer policy
+
+if you set permissions to the GPO to deny read, then the computer cannot read the GPO and it will not be loaded
+That's why shouldn't give deny read access to GPOs
+
+in class practicals we will change computer configuration GPOs. Not so much user configurations
+
+computer configuration preferences have no admin implications. They have no restrictions
+
+application log size should be of reasonable size or else if log contents extends beyond the maximum capacity then all changes would not be recorded. But should also minimise size so it wont take too much space
+
+there are a lot of policies and configurations. No need to know them all. Just focus the ones covered during the class lab
+
+system admin can override password security options and provide an even more secure password to the user. But user have to always follow the password security requirements like min number of chars etc
+
+account lockut parameters prevent brute force attacks
+
+reset account lockout count is the time taken before the account lockout threshold resets
+
+*keberos authenticating service*
+must secure the user ticket provided by keberos cuz if the attacker steals ur user ticket, he can have all ur permissions and access restricted files
+user tickets have a maximum lifetime so that the user must log in again
+
+with keberos, all PCs in the same domain must sync the time with the domain controller. IF not sync it could indicate that the PC has been attacked
+
+GPO is directly related to security settings as well
+
+not configured is not the same as disabled om terms of GPO. What's the difference ?
+
+GPO special configurations options?
+		block group policy inheritance? (not as powerful) (all GPO from the group policy won't be inherited)
+		enforced ?	(more powerful)	(the GPO set will overwrite any other group policy or whatever)
+		???
+
+
+
+
+
+
+
+>UPDATE MANAGEMENT<
+
+
+
+the goal of update management is to be able to deploy a server with the latest updates as quickly as possible
+
+In the past, people believe that not doing anything to the PC is the best, most secure option. New patches could cause problems.
+But that's not true because the code might have vulnerabilities that need to be patched so it's better to update to latest.
+
+It's possible to ammend the vulnerabilities without installing patches. You will need to study carefully the security vulnerabilities and ammend them manually. 
+
+On an enterprise level where they may be 500 workstations, it's crucial to use a software deployment program to install new apps on each workstation. This also means the staff do not need to understand how to install the apps. The admin does all the configuration. No technical knowledge from the staff needed.
+
+Windows Server Update Services (WSUS) can only deal with microsoft products
+
+There are a lot of products that also offer software management and deployment. If I know how to use these products, the company will be more likely to hire me because these products are very important for large businesses
+
+SCCM also checks and manages mobile devices. This is very important because many businesses don't allow staff to use their phones because of security vulnerability. But SCCM fixes this issue by managing the pohne software too
+
+Microsoft security guide lists out all the security updates. You can also search for vulnerabilities of other micorsoft products
+
+Windows also sends out advance notofication of 3 days before they roll out any updates. 
+
+Microsoft never sends patches through email attachments. This is most likely a phishing mail. 
+
+The domain controller should not be running WSUS. It should only be running active directory. Use another PC as the admin for WSUS
+
+Admin can set up a WSUS server. All workstations will download updates from this WSUS server instead from the internet. This allows the admin to manage the updates before rolling them out to the staff. This also means that workstations do not need internet access to update their software. This minimises security vulnerability. This also meas that the WSUS server needs to have a lot of storage so that it can hold updates from many years ago
+
+WSUS should use HTTPS protocol to transfer data. Cannot use HTTP port 80
+
+WSUS clients will report to the server what OS version and software version it is running. So an attacker could do a man-in-the-middle attack and spoof a report saying that the client is using the latest updates. But in reality the client is using 2 yr old software that has many flaws. 
+
+if WSUS malfunctions, you can check the log files
+
+updates can be automatically or manually approved from the WSUS server. Manual approve is more secure.
+
+WSUS clients can be put into small WSUS groups to test out updates. The admin can manually test the updates on the small WSUS group then of the updates are good then the admin will set the other clients to automatic update.  
+
+OU and WSUS groups are different. OU is for WSUS group policies while update groups is for updating software
+
+updates usually roll out on tuesdays
+
+When Admin recieves notifcation of an update, he/she should always check if the vulnerability applies to the organisation. This is so that if the vulnerability doesn't affect, then the admind doesn't need to waste time and resources donwloading the patch
+
+The admin should also check the cost of downloading the update. 
+	- cost of testing update
+	- cost of deploying update
+	- support costs in case of any negative result after the update
+
+Admin must always perform risk management 
+
+vulnerabilities have different severity ratings too
+
+
+server updates need to have a planned date to roll out updates because the server cannot anyhow be put down or else the producitivty of the business would be affected
+
+
+
+
+
+
+
+IPSec
+	a protocol to protect communications over IP network based on cryptographic security services
+	the internet had no security. TCIP itself purely has no security that's why there other other protocol used with it to ensure security
+	so IPSec is like a security add on to the original internet
+	Most protocols already have security add ons but IPSec is still important beause its well established between both windows and linus
+
+	IPSec is like a generic solution for all protocols while other protocols like SFTP or HTTPS are sepcific to the different protocols
+
+	you can specify the port range for packet filtering like firewall. can also specify source and destination address
+
+	PC must be part of trusted list . Both side must authenticate to each other to verify they both on the list
+	
+	TCIP was very prone to DOS
+
+	IPSec has a few protocols inside
+
+	initial authentication doesn't exchange any packets. It only verifies if the packet identify is true
+
+	IPSec  authentication header (AH) is not the same as the trused PC authentication. It is only a packet level protocol.
+	Each packet will have AH signature to prove that the packet hasn't been compromised. AH is to ensure integrity. Provides checksum
+
+	Encapsulating security payload (ESP) is to encrypt the data 
+
+	AH and ESP usualy isn't enabled together because ESP also provides  packet level authentication
+
+	Although IPSec is supposedly open standard and is supported by other OS, they dont usually work well with different OS
+
+	In this module we only learn windows to windows IPSec
+
+	IPSec begins with the IKE protocol. It will negotiate with both PC with what security protocols and encrytion to use to communicate
+	It will also generate keys
+
+	IPSec can affect network performance and cause compatibility issues so only use IPSec if security is required
+
+	IPSec affects performance because each packet needs to go through filtering processing. Using the ESP encapsulates more data so the packet size becomes bigger
+
+	within a company network, HTTPS is only protected from the outside but from inside you can see the contents of the data so that firewall can make sure u don't send out hostile things
+
+	kerebos allows authentication because 2 PCs in the same can show each other the verified ticket to prove their identity
+
+	the domain controller issues out the ticket
+
+	but this kerebos ticket method is not effective because talking to domain controller requires ticket. But initial communication hs no ticket because the PC needs to request ticket from DC first
+
+	IPSec is not recommended within a domain, beteen domain controller and domain members because it reduces performance
+
+	IPSec also shouldn't be used to cover all traffic. It should be more specific so that it doesnt slow down performance
+
+	IPSec is good because it protects against DOS
+
+	each computer can only have 1 IPSec policy to handle
+
+	ESP doesn't protect the original IP packet header so must use both ESP and AH to provide extensive protection of entire packet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> SECURED WEB ACCESS <
+
+
+Encrypting data is not enough. Still must authenticate who you sent the encrypted data
+
+for e commerce, one way authentication is enough. But if like communication between 2 staff, then 2 side authentication is needed
+
+kerberos never allows the password to go through the communication channel
+
+IIS AUTHENTICATION METHODS WILL BE TESTED. MUST KNOW EACH MEHTOD. see lecture slides
+
+self issued cert means you are your own CA
+
+
+
+VPN ensures privacy because when u send something to another network, the packet is routed through several routers. 
+You won't know if these routers along the internet are safe so VPN solves this.
+
+if an extenal PC from the internet wants to connect to an internal network, it will talk to the internal network's VPN server. 
+The VPN serer will then forward the requests to the internal PC then reply the external PC
+
+DON'T USE DOMAIN CONTROLLER AS THE VPN SERVER
+
+domain controller should only have one network card. 
+
+
+MUST KNOW THE 4 REMOTE ACCESS TUNELLING PROTOCOLS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a secret key means the key has never been sent out before
+
+most important thing about certificate is that it holds the public key
+
+you can trust the certificate if the digital signature is signed by a CA
+
+certificate expiry date allows the blacklist to be shorter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SMW JOURNAL 19 APRIL 
+I need to buy textbook because Microsoft website cannot understand and info online may not be accurate
+I need to write a journal to reflect on SMW every week
+SMW is defending Windows server not the usual Windows Home
+Learning about Windows server may be useless now but Mr Kwan says it will be very useful when I enter the workforce
+If I don’t understand the slides, I should read the reference materials
+There will be a forum where participation is graded
+Important data should be kept in server
+VMnet 8 has NAT. NAT was used for IPv4 because there were not enough IP addresses to assign.
+If I put a client under other VM networks, it wouldn’t be able to access the internet because no NAT.
+VMnet provides DNS and DHCP service
+Each VM network is like an intranet where connected clients can only communicate within the the VM network it is in
+If an IP address matches the IP subnet of the network, then it is a device from inside the network. But if it doesn’t match then it’s from outside.
+To make a client do the DHCP service instead of the VMnet, must disable automatic DHCP both within the client and VMware. Since DHCP is disabled, must manually enter IP address. The IP address that I manually assign has to inherit the values of the subnet IP ( why ?). The default gateway has to match the VMware one (why?). Why is the DNS server the same as default gateway ?
+
+Active directory is a list of information about all network resources. It allows the admin to access and manage the resources. These resources include devices such as printers and computers, group policies and accounts.
+
+There’s a lot of networking concepts that I don’t fully understand. I’ll read up more on them. 
+
+
+
+
+
+
+
+SMW JOURNAL 26 APRIL 
+SMW is not about writing a magical program that can protect Windows. It’s about learning how to write secure code and best practices.
+There are 2 types of IP address. There’s private and real IP. Private is like 192.168.1.1  . It requires NAT support ??? Then there is another IP address that is unique and known publicly.
+If IP address has 0 at the end, it is a segment ???
+VMware gateway is .2 because .1 is for the host
+To connect to the internet, I need Gateway, IP address, Network Mask, NAT, and DNS
+What happens when there is no network mask ???
+Gateway is used to go outside of local LAN
+Bad network mask can lead to very poor performance because gateway send back to the LAN ???
+DNS server can be same as the client.
+Cannot use ping to troubleshoot issues because ping doesn’t need DNS. It only tests for IP address and gateway. Ping google.com instead
+.NET is a software to run programs in any language by combining all libraries together ???
+Updated server OS also means should use updated client OS. WinXP needs 2016 server to lower all its security settings in order to work with 2016 server.
+Server manager might be a bit tedious because I’m only managing one server. But it’s useful in real world where they may be more servers
+PowerShell has more functions than cmd
+
+
+
+
+
+
+
+
+
+
+
+
+
+SMW JOURNAL 3 MAY
+Remote login is useful because sometimes the server is physically inaccessible, so the ability to control the server remotely maintains the physical security of the server. However, this is a major vulnerability because an attacker could bypass all physical security and access the server only through the remote desktop.
+
+Server manager is considered a security tool as well.
+Distributed File System (DFS) is a security tool that improves reliability. GO READ UP AGAIN
+
+No possible way to fully protect the system, so follow best practices to ensure security is as stringent as possible
+
+Best practices analyser will check the server if it complies with a set of rules. These rules are based on
+-	Configuration
+-	Security
+-	Predeployment
+-	Performance
+-	BPA prerequisites 
+^^this was tested in last year MST
+
+The registry is a database that holds information about 
+-	Hardware
+-	services
+-	programmes 
+-	user profiles and group policies
+It has no control over the system it just records data
+Active Directory can assign different group policies to different systems based on the PC’s configurations e.g. firewall settings
+An attacker could attack the registry and amend the group policy so that even firewall can’t catch the attack. This is why registry must be protected
+
+I should avoid modifying regedit
+READ UP ON THE 5 REGEDIT GROUPS
+READ UP ON THE 4 PRECAUTONS WHEN WORKING WITH REGISTRY
+^^these most likely tested
+Looking at the records in regedit can help with forensics 
+I must learn how to setup group policy object to set up configurations for multiple systems
+
+Each domain has its active directory
+Why put server in domain
+What is domain
+There are normal domain controllers and primary domain controller with special permissions. But PDC doesn’t have any major differences in terms of these permissions
+What does it mean to join a domain? 
+What is domain account and local account?
+There are several ways to login using domain account
+-	(server name)\(account name) eg.	soc\ST2612
+-	(full domain)\(account name) eg.		soc.smw.com\ST2612
+-	(account name)@(full domain) 		ST2612@soc.smw.com
+
+Computer name should be unique especially if joining domain
+Client accounts that connect to a domain would inherit the group policies that the server’s domain controller, has set.
+In order to connect to a domain, must configure DNS to find the domain’s URL
+I can use group policies to restrict only Admin account can allow clients to login to the domain. By default, any client (even with low permissions) can connect to the domain with their regular username and password. This is bad because when a low level client joins the server, even though they may not have a lot of permissions, still can run things like wireshark to attack/monitor the domain
+
+
+
+
+
+
+
+
+SMW JOURNAL 10 MAY
+active directory instance is one database
+A member server is a regular server that's not domain controller
+The roles and permissions of a member server is defined by the domain controller
+Active directory will store all the hardware information of all objects
+Sometimes 2 active directories cant merge because the scheme system is different in both active directories
+Every active directory has 1 schema. In each schema it contains a whole lot of data like username password permissions and all
+Windows global server. Go read up
+MST will test how to draw the active directory and how many trees there are in a forest
+Remember ADGUP best practices
+
+If I add more storage on the hardware side, I need to expand the file system for the OS to recognise the bigger drive.
+I need to know at least half of the Best practices analyser ( BPA) policies
+It’s not recommended to configure firewall settings for 1 PC. Best to configure the server domain controller’s group policy object to configure all the client’s firewall settings.
+When a server becomes a domain controller, all local accounts would be disabled. Only domain accounts can login.
+Domain account vs local account ?
+Windows trust ?
+
+
+AGDP
+-	Each permission should only be related to 1 resource
+-	DL can only take over permission that belongs to its own domain
+
+
+
+
+
+SMW JOURNAL 17 MAY
+A PC needs the same schema to join a forest. But if the PC change schema still must remain in the forest.
+PC needs to create new forest if no matching schema
+Focus on local and domain local security group
+Security groups have delegation but organisational units (OU) don’t
+In OU, all objects can only belong to 1 OU. Unique membership for each object. But security group can have objects belong to several 
+The scope of a domain local group is the domain which the group exist
+Read up active directory objects membership capabilities
+Universal or global security group has the same functions except ?
+In larger organisations, AGUDLP is used
+	Account
+	Universal
+	Global
+	Domain Local
+	Permissions 
+
+If files or fodders have the archive attribute, that means it needs to be backed up. 
+All the file names are put into a list for indexing. This makes file searching much faster.
+Administrator can open windows encrypted file, so best to use own encryption software. 
+It’s good practice to use the cipher command to physically delete files because normal delete means that the data is only unallocated. This is a major flaw of EFS however it requires low level programming.
+WATCH THE SHARE & NTFS PERMISSIONS VIDEO !! RELATED TO MST
+For the windows shared permissions, the full control attribute also means the user can grant permissions to other accounts. 
+Look at lecture 4 recap. I should know all the listed concepts. 
+
+DNS forward lookup – give domain name, get IP address
+DNS reverse lookup – give IP address, get domain name
+
+Reverse lookup security feature ?
+Within an Active Directory, devices should ideally communicate with one another using domain name instead of IP address because IP address is dynamic and an keep changing.
+IPv6 no need NAT because there are enough IP addresses to allocate.
+When we use IPv4, the NAT actually gives an IP address for all devices to communicate with one another within the network. All devices that connect to the internet actually uses the same single IP address.
+DNS security checking prevents an attacker from changing any DNS settings
+DNS server has a master and slave system. The primary DNS server is the master. To change anything settings, must change from the Primary DNS server. The secondary servers are slaves. They only have a copy of the primary server. Changing one secondary server doesn’t update all other DNS servers.
+The primary DNS server can configure which servers are allowed to take a copy of the primary DNS settings.
+MUST KNOW HOW DNS QUERY WORKS !! TESTED FOR MST
+DNS poisoning. The attacker can trick the user into entering google.com but instead the DNS server would redirect to attacker site.
+Attacking the browser cache also works because the browser doesn’t always access the DNS server to resolve domain names. It checks cache first. However, attacking 1 browser’s cache will only affect 1 victim. Attacking the entire DNS server will affect all victims that accessed the DNS server.
+SEARCH UP VIDEO ON DNS ROOT SERVER
+What happens when the local DNS server can’t resolve the domain name ? It will ask the higher level root server. Top level domain server (TLD). Each country has its own TLD. 
+DNS servers can also have a forworder function. If the current DNS server cannot resolve, it will go to the next level. For instance My laptop will check
+1.	Browser cache
+2.	Local DNS server
+3.	Singapore Poly DNS server
+4.	Singtel DNS server
+5.	TLD ( highest level)
+A Stub zone is like a cache but instead of holding the IP address of the domain name, it holds the address of the authoritative DNS server of the domain name. The authoritative DNS is the highest most reliable DNS server. 
+Stub zone can also be attacked in the same way as DNS poisoning. 
+Cache will time out and flush out within a period of time. Stub zone is permanent. 
+Read up what is SOA record zone
+
+
+
+
+
+
+
+				SMW JOURNAL 17 MAY
+
+-	Secondary DNS server is a redundant DNS. If the secondary fails, the primary still operates. The primary is usually protected by firewall, while the secondary is not
+-	Zone transfers implement this secondary DNS transfer
+-	Secondary DNS reduces congestion on the primary
+-	Secondary DNS server also improves latency since queries far from the primary can be directed to the secondary
+-	What are the 3 DNS servers that the client can resolve IP if the local DNS cannot ?
+o	Root
+o	TLD
+o	AAS (authoritative)
+-	What is SOA record ?
+-	What is Name server ?
+-	Read up on stub zone 
+-	To improve performance, the local client doesn’t directly go to the 3 other DNS servers to resolve address. Instead, the browser will act as a forwarder and forward the query to another DNS server to process the query
+-	The downside of forwarder function is that the client doesn’t know where the query is being forwarded to. This is a security flaw because if forwarded to an attacker’s DNS server, the attacker can resolve the address to his malicious domain
+-	Read up on root hints
+-	Read up on “forwarder vs root hints”
+-	To improve on the security flaw of the forwarder, set DNS filtering to blacklist a list of malicious sites. This filter can be configured on the actual server that performs the resolving
+MUST KNOW DNS SERVER BEST PRACTICES. TESTED FOR MST
+-	IMPORTANT: what are the security benefits of read only domain controller (RODC)
+-	DNS filtering not only protects the client from going to the bad site, but also prevents the attacker from going to the client. The server would send the attacker to a dead end instead of the client.
+-	If a domain’s website is down, it doesn’t just mean the server is not running. It could also mean the DNS isn’t working
+-	Read up on DNS amplification attack
+-	Read up on MBSA
+-	MBSA checks other Microsoft software
+-	BPA check server MBSA check client
+-	Search up Microsoft security compliance manager 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+
+PAST YEAR PAPERS
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+What is Microsoft ADCS Enterprise CA ?
+	Enterprise has auto-enrollment. Automatically give cert automatically without authenticating. Since scope is small, the users that request for cert are all trusted whereas in standalone the users that request for cert can be anyone
+	Enterprise CA have  
+
+
+What is Microsoft ADCS Standalone CA ?
+	standalone has bigger scope because it is not bound by any enterprise or organisation
+
+
+What are the 3 VPN protocols?
+	- IKE v2 
+	- PPTP ? point to point tunelling protocol
+	- SSTP	? 	secure socket tunelling protocol (uses SSL based encryption)
+	- L2TP ? Layer 2 tunelling protocol (not virtual piping - no encryption involved)
+	- L2TP/IPSEC ( IPSEC enabled with L2TP. This is the real VPN protocol since it has protection)
+
+
+what is UDP and TCP ?
+
+
+What is IPSec encryption ? Firewall requiremens ? 
+
+What is IKEv2 ? Does it offer AES ? Firewall requiremens ? UDP ?
+
+SSTP does it offer AES ? Microsoft point to point encryption ? Port 1723 ? firewall requirement ? port 443 ? TCP ?
+
+
+
+RDP connection is secure. But it takes some time for its initial connection. One loophole is that the client is expected to go through authentication by Kerberos. This is a long process. Thus the server has to set a longer timeout. Longer timeout means prone to DDoS. To mitigate this RDP uses a lower level authentication. Network level authentication. If the client is too old or if there's no domain network then NLA won't work.
+
+What is Network Level Authentication ?
+
+
+IPSec vs RDP ??
+Cost vs effectiveness ?
+
+
+database questions wont be asked anymore !!!!!!
+
+
+to secure connections over the internet, need tunnelling !! VPN !!
+
+should always avoid applying IPSec to domain controllers !! why ?
+
+Tunelling and VPN is expensive
+
+
+RDP is bad at FTP. Why ?
+
+
+
+Steps of deleting group policy object
+	unassign, wait long enough (24h), delete GPO
+
+
+Implication of security group
+	Unauthorised user cannot access data
+
+Anything about OU means GPO is related.
+
+Implication of leaving an OU
+	OU won't be applied to the user. The user will inherit a different set of GPO which may cause security related issue
+
+How to secure a server
+	physical security
+	update
+	use remote desktop
+	firewalls and antivirus
+	BPA
+	SCM to load in baselines
+
+
+
+2 testing criteria of a new update
+	1. mission critical applications should be able to function as per normal 
+	2. System cannot restart/ boot up  properly
+
+
+2 post implementation tasks during review stage of a patch exercise
+	discuss new service window (when is the server operational?) 
+	assess damage and cost. Manhours
+
+
+2 advanage of using WSUS computer groups
+	limit updates to specific computers to test if the updates work
+	if update doesn't work to specified computer group, other computers in the network won't be affected
+
+
+3 administrative fatures offered by remote desktop
+	

@@ -1,0 +1,166 @@
+EAD NOTES
+
+@@@@@@@@@@@@
+@										@
+@		MVC CONCEPT		@
+@										@
+@@@@@@@@@@@@
+
+The standard old mainframe system, where the user interface runs on the same computer as the database and business applications, is known as single tier. Server and client softwarwe runs on the same PC
+
+2 tier (two tier) is where the server software is on a separate server PC, and the client software is on another client PC. However 2 tier is only good if business logic is not subjected to much change, and there's a small number of clients
+
+an API is a set of definitions and protocols
+
+javaBeans is an API that involves calling functions with zero arguments ?
+Enterprise javaBeans ( EJB), is javaBeans but for server side 
+
+(standard) J2SE is used to make applets with java 
+(enterprise) J2EE is used to make servlets with java
+(mobile) J2ME is used to create mobile apps with java
+
+servlets are applets that run in server side
+
+JavaServer Pages is a technology and file type like HTML. It's like HTML but can write Java inside too
+
+web container = Servlet engine
+Web Container is an java application that controls servlet. Servlet do not have a main() method, So they require a container to load them.
+
+a three tier architecture ( 3 tier) is where the PC connects to the server but the server does not own the data. Instead the server receives the data from a separate data source.
+client -> server -> database
+
+**THE 3 LAYERS
+
+PRESENTATION
+the client. the browser. the website GUI
+
+APPLICATION (logic layer)
+the server. performs all processing and accesses database for data. Returns data to client
+
+DATA
+databse. stores all data. SQL
+
+
+***PROS AND CONS OF 2 TIER***
+
+PROS
+- easy to implement
+
+CONS
+- since the server contains the business logic, frequent changes to the regulations would slowdown the server 
+- not flexible since the server has limited system resources so more clients would slowdown performance
+
+
+***PROS AND CONS OF 3 TIER***
+
+pros
+- more secure since client doesn't directly access the database
+- there can be several servers so more networks can be formed to connect to the database. This improves scalability 
+
+
+############
+#		MVC		  #
+############
+
+model				business				holds beans
+view					presentation			holds .jsp .html .css
+controller			ccontrol				holds
+
+@@@@@@@@
+@						  @
+@		servlets	  @
+@						  @
+@@@@@@@@
+
+#	life cycle	#
+init()		->		service()		->		destroy()
+
+
+#	response header "content-type"	#
+text/html	
+text/plain
+text/css
+image/png
+image/jpeg
+
+
+@@@@@@@@@
+@							  @
+@		javaBeans 	  @
+@							  @
+@@@@@@@@@
+
+valueBean		holds an object and all the variables that belong to it
+utilityBean		performs a specific function
+
+
+@@@@@@@@@@@@@
+@											@
+@		doGet() vs doPost()		@	
+@											@
+@@@@@@@@@@@@@
+
+doGet() 
+- writes the parameters to the URL
+- has maximum input size
+- parameters not encrypted
+
+doPost()
+- writes the parameters to the HTML body
+- no limit to input size
+- parameters encrypted
+
+
+@@@@@@@@@@@@
+@										@
+@		.JSP SPECIFICS		@
+@										@
+@@@@@@@@@@@@
+
+<%   	%>
+	this is to write any code in java
+
+<%!		%>
+	this is to write java code, but it is written outside the body so variables declared here will not be defined in the HTML body
+
+<%@	%>
+	this is to import packages with java code
+
+System.out.println()
+	this is to print to console
+
+out.println()
+	this is to print HTML page
+
+
+@@@@@@@@@@@
+@									@
+@		executeQuery()	@
+@									@
+@@@@@@@@@@@
+
+executeQuery()		SELECT 																	makes no changes to the database. Returns a resultset
+executeUpdate()		INSERT, UPDATE, DELETE, CREATE, ALTER	makes changes to the database
+
+
+@@@@@@@@
+@						  @
+@		sessions	  @
+@						  @
+@@@@@@@@
+
+session.setAttribute(x,y)		x = session name, y = variable
+
+invalidate()							destroy session
+
+
+@@@@@@@@
+@						  @
+@		cookies	  @
+@						  @
+@@@@@@@@
+
+
+setMaxAge()		time in seconds before cookie s destroyed. If 0 then cookies dies immediately
+
+
