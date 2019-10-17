@@ -1,0 +1,1884 @@
+***COMMANDS***
+
+
+whoami
+	displays user
+
+ifconfig
+	to check ip address and MAC address
+
+ping ______( ip address)
+	to find latency between host PC to another PC. Fill in other PC ip address. Sends packets
+
+su_________( other username)
+	switch user
+
+su - ________( other username)
+	access another account without logging out. This means that you use same working directory. Also runs all bashrc configurations of that user account
+
+ip a
+	similar to ifconfig. Newer command with more functions
+
+man ______________( manual category)
+	view commands manual
+		press " Q " to exit manual
+
+man -K ___________(manual category)
+	lists chapters in the manual
+
+man -k __________( specified command)
+	view related commands related to specified command
+
+init 0
+	shutdown
+init 6
+	restart OS
+
+who
+	displays users logged in, and where they log in from
+	to view more detail about the users, use " tail /etc/passwd "
+
+SSH ______( user) @________(ip address)
+	this connects you to another remote machine. Must have remote machine's password. 
+
+pwd
+	to check current working directory
+
+gedit "_____"( name of new file)
+	create new file. Only root user can create
+
+
+ls .
+	lists folders in current directory
+
+ls ..
+	lists folders in parent directory
+
+ls -l 
+	lists folders with more detail like size and date created
+
+ls -a
+	lists all folders including hidden folders
+
+ls -s
+	sort files by size 
+
+ls -i
+	lists folders with their inode number
+
+ls -s -r
+	sort files by size in reverse order
+
+ls -l - R OR   ls -lR
+	list folders with their contents
+
+ll
+	lists ???
+
+ls _____ ( folder) | more
+	lists contents of folder in pages
+
+ls _______(any letter or character) 
+	lists the folder with specified character
+
+ls ________( any letter or character) *
+	lists any folders with specified character
+
+ls [ ___ ____ ]* 
+	lists all files with either characters
+
+ls [ ^___ ____ ]*
+	lists all files without either characters
+
+ls -l /
+	lists all files and folders in superuser 
+
+ls -ld ___________(specified directory or file)
+	list file permissions of specified directory or file )
+	similar to getfacl but with date created
+
+cat
+	see contents in file. Must be in the directory of the file first
+
+cat _____(specified file) > (specified file)
+	put 1st file into 2nd file. Same as " cp ", command
+
+ls ____________( name of directory)
+	lists files under a certain directory
+
+ls -Z _________( name of directory )
+	views the details and security context of specified directory
+
+ll /home
+	view all users
+
+
+cp _____( file name)  _______________(new file name)
+	duplicate folder. aka rename
+
+cp ___________(file name ) -r ____________(new file name)
+	duplicates folder and all its subfolders
+
+
+mv ________(file name) _____________(other file name)
+	move directory of a certain file to another directory
+
+mv_______(file name ) ./_____________(directory name)/____________(file name)
+	move file to a specified directory with a new name
+
+xhost
+	allows anyone to connect to your pc
+
+xhost -_____(specified user )
+	disables users from running programmes ?? idk 
+
+
+
+
+cd ~______(username)
+	change to directory of specified username
+
+cd ~
+	goes to home directory
+
+cd /_______ ( name of directory )
+	change directory
+
+cd -
+	go back to previous directory
+
+passwd __________( specified user)
+	change password of specified user. If left blank then its current user
+
+	anyone can view the /passwd folder
+
+touch
+	create new empty folder
+
+touch ._____ ( name of new folder)
+	create new hidden empty folder
+
+echo
+	terminal will repeat whatever you write after echo
+
+echo "__________( text content )" > "____________( name of folder) "
+	ceate content in specified folder. Must be in same directory as the folder. If you use " > " when the folder is not empty, all contents will be overwritten. To keep contents, use " >> ". If file name is not found, then it would create the file
+
+
+___________( content) > "_________" name of folder
+	redirect content to a folder. Must be in same directory as folder
+
+/________
+	search for a text
+		press " N " for next result
+		press " P " for previous result
+
+mkidir _________( name of directory )
+	create a directory. If no error message then it was created
+
+rmdir _____________( name of directory)
+	remove directory. Must first clear directory of its contents before removing it
+
+rm -r ________________ ( name of directory )
+	removes contents of directories with prompts
+
+rm -i _________________( name of directory )
+	removes contents with prompt
+
+rm -rf _______________( name of directory )
+	removes contents of directories without prompts. Forced delete with no confirmation
+
+head/tail
+	displays the first or last few lines of a file. To be used with ls
+	eg
+		head-2 myfile.txt
+			this lists the first 2 lines of myfile.txt
+
+gedit
+	run text editor
+
+updatedb
+	update pc for any new files
+
+locate ______ (keyword)
+	find in every directory this keyword
+
+find _______ (specified directory) __________ ( keyword )
+	find keyword in specified directory
+
+ find _______ (specified directory) __________ ( keyword ) -type ___ ( command )
+ 	" -type ", allows you to search fr a certain file type
+ 		-type f
+ 			regular file
+
+ 		-type d
+ 			directory
+
+ 		- type f -size +1000k
+ 			find files at least 1000KB in size
+
+find ______ ( specified directory) -inum _______(inode number )
+	find a file in specified dir using inode number
+
+find ______ ( specified directory) -user ________(specified user)
+	find specified directory that specified user owns
+
+tar -xf __________(specified folder)
+	extract all files form specified folder
+
+tar -z ___________(specified folder)
+	compress using gzip
+
+gzip _______ (file name)
+	run gzip  on a specified file. Compresses the file
+
+gunzip _____ ( file name)
+	uncompresses the file
+
+which
+	shows the full path of shell commands
+
+file ____________(name of specified file/dir )
+	tells you the nature of specified file/dir
+
+__________ ; ________________
+	using a " ; ", allows you to run multiple commands in one line
+
+bzip2 _____ ( specified file name )
+	compress and zip a file using the bzip2 tool. File format becomes .bz2
+
+gzip _______ ___________ _________
+	compress and zip multiple files speerately using the gzip tool. File format becomes .gz
+
+
+ln ______(file name) ______( shortcut name)
+	create a shortcut to specified file name. AKA hard linking. Shortcut would have same inode number. Shortcut would still work when target file is deleted. Contents edited in target or shorcut would sync
+
+ln -s ______ (file name) ___________(shortcut name)
+	creates shortcut like in windows. inode number will be the same but if target is deleted, shortcut will not work. Contetns edited in target or shortcut would sync
+
+grep _____ ( specified term ) ________(specifed directory )
+	to find specified term in specified directory. Sth like Ctrl + F
+
+
+useradd _____________ ( new username)
+	add new user. All settings in default
+
+useradd _____________ -c "_______" ( description )
+	add new user with a description to that account
+
+groupadd _________(specified group name)
+	creates a group
+
+
+groupadd -g ____________(specified group id ) ____________ ( groupname)
+	changes/ sets group id of a group
+
+groupdel __________________(specified group name)
+	remove group
+
+id ____________ ( username )
+	displays info about specified user
+
+usermod   ___________ ( specified username )
+	modifies system accout file of specified user
+
+usermod -G _______ ( specified group name)
+	adds user to this specified group and leaves all other group
+
+usermod -aG ______ ( specified group name)
+	adds user to this specified group while remaining to other groups
+
+	
+
+
+finger __________ ( specified username)
+	reports when users were last logged into the system. Must install finger command first
+
+userdel ______________ ( specified user )
+	delete user
+
+userdel -r ___________ ( specified user )
+	delete user and all home directories 
+
+
+sudo
+	give admin permissions to another user
+
+
+sudo _________ (specified admin command ) ________( specified user)
+	give specified admin permission to specified user
+
+visudo 
+	safely edits the sudoers file
+	( sudoers file allows you to change special root permissions )
+
+
+
+chsh -l
+	lists all shells available
+
+chsh ________ ( directory of specified shell)
+	change shell to specified shell
+
+echo $0 
+	view current shell
+
+echo $SHELL
+	view current shell setting
+
+cal
+	view system calender
+
+alias
+	view all set shortcuts
+
+
+alias ________
+	set shortcut
+		eg.
+			alias c=clear
+				when I press c, the terminal clears
+
+			alias c="cat /etc"
+				when I press c, the directory /etc is viewed
+
+
+
+unalias ________
+	remove set shortcut
+
+!!
+	run previous input command
+
+history
+	view command history
+	You would then see a list of commands with their serial number. Input !___( serial number), to run that command
+
+	after running the history command, use these shortcuts
+	!!		Run previous command
+	!n		Run command number n
+	!-n		Run the nth most recent command
+	!cmd	Run the most recent command that started with cmd 
+
+
+$____ ( variable)
+	tells you what the variable represents. But if variable represents nothing then it would output a blank
+
+_____ ( variable )=" _________ "( content)
+	set a specified variable to represent something
+
+
+
+export ________
+	used to make a shell variable into an environment variable
+
+set 
+	lists out all local and environment variables
+
+env
+	lists out environment variables
+
+echo $____( specified variable)
+	this displays the value of the specfied variable. The dollar sign is to represent that the input words are a variable
+
+
+chmod ---- ( insert numbers )
+	to give permissions to users
+
+	chmod uses binary to represent R W X ( read write execute ). R=4 , W=2, X=1 . 
+	To give full permissions to user, it would be chmod 7
+	To give execute only, its chmod 1
+	To give execute and write, it would be chmod 5
+
+	there will be 4 digits to input. 
+	 
+	1st is owner of file
+	2nd is group members
+	3rd is others
+
+	another method without numbers is
+	chmod u=rwx,g=rx,o=r myfile
+		chmod u=____ ( permissions of owner of file),
+		 g=______(permissions of group), o=_____(permissions of others )  ____ (filename)
+
+
+		***Non-root users can only change permissions of files or directories they are user owner of
+
+chmod a=rwx _______(specified file )
+	this gives all users read write and execute permissions to a specified file. Can use + or - to  add or remove permission, or = to set
+
+
+setfacl -m u:_____(specified user):___(specified permisons, either r,w,or x. Can be all also) _____(specified file)
+	setfacl is similar to chmod as it allows you to change permissions of a single file
+	facl means file access control list
+
+getfacl _____(specified directory)
+	views permissions of the specified directory
+
+chown _____ ( specified user/group ) _________ ( specified directory)
+	to change owner of directory
+
+	must be superuser to run
+
+
+
+chgrp 
+	to change group ownership of a file
+
+newgrp
+
+
+chage ___________(specified user )
+	Change thr ageing information for specified user. For instance change the expiry date of password
+	This command doesn't affect the /etc/passwd folder
+
+chage -l  ___________  
+	displays aging information
+
+umask ______ ( number)
+	changes default permission of all files for all users ( removes )
+		eg
+			umask u-x,g=r,o+w
+
+			this changes default permissions to, user cannot execute, group can read, and others can write
+
+	if I enter " umask 777 ", the command will remove all permissions. umask takes away permissions
+
+
+	umask 777 represents rwx rwx rwx. That means all permissions are removed
+	umask 666 represents rw rw rw. That means only Read and Write Permission are taken away
+
+
+
+
+chmod u+s or chmod 4[xxx] 
+	set user ID (SUID)
+		runs the file while taking the identity of the file owner ( doesn't apply to directories)
+
+chmod g+s or chmod 2[xxx]
+	set group ID (SGID)
+		runs the file/directory as the group owner
+		When a directory or file is created, its group owner is set to the primary group of the user who created it
+
+chmod o+t or chmod 1[xxx] 
+	set sticky bit 
+		If the Sticky bit is set, only the owners of the files are allowed to delete them
+
+	***it is not possible to set SUID, SGID, or Sticky Bit with numbers, while inheriting the default file permissions
+
+
+chmod og-rw
+	removes read and weite permissions for both others and group. chmod can be used with multiple commands like that
+
+makewhatis
+	???
+
+
+nano
+	another text editor like vi
+
+uname
+	prints system information
+
+tail /etc/passwd
+	this views all users created
+
+tail /etc/group
+	this views all groups created
+
+sestatus
+	this views the security status of the system
+
+cat /etc/sysconfig/selinux/config
+	this views the contents of the selniux file. This file contains info on linux security features
+
+getenforce
+	prints the SELinux status only. No detailed info
+
+setenforce 0
+	set the security status to permissive
+
+setenforce 1
+	set the security status to enforcing
+
+restorecon ?
+	force change context to fit policy to allow file permission
+
+
+ps
+	Reports a snapshot of the status of currently running processes
+
+ps -axZ
+	??
+
+fdisk -l
+	view all drives, including unformatted drives
+
+fdisk -l /dev/sda
+	view details of specified disk. " sda ",is the first disk. " sdb ", is the second disk
+
+fdisk ______(specified drive directory)
+	partition drive
+
+df
+	view info on all mounted disks. Only when you properly format and partition would the drive appear here
+
+df -h
+	??
+
+mkfs
+	make file system
+
+mkfs -t ______(disk type ) __________(specified disk directory)
+	mount a specified disk in the specified disk type eg. ext4, NTFS, FAT32
+
+	the most common is ext4
+
+
+mkswap _______(specified directory for swap space)
+	same as mkfs but for swap space partitions
+
+swapon _____(specified directory of swap space partition)
+	activate the specified swap space
+
+swapoff
+	this does the reverse to the specified partition
+
+mount
+	view mounted partitions ( must mount partition before being able to use )
+
+mount _________(specified sdx) __________(specified mount directory)
+	this command would mount a partitioned drive
+
+mount -a
+	check if got any errors after partioning and mounting
+
+mount -o loop ___________(specified image directory) _____________(specified mount directory)
+	this command mounts the image to a specified directory. "loop", is drive type or sth
+
+gedit /etc/fstab
+	edits the fstab file which makes all mounted disks and partionined drives, default on next boot. Basically save all changes for next boot
+
+umount _____(specified drive directory)
+	unmount a drive
+
+mount -t nfs -o remount:/ro 
+	??
+
+fsck
+	file system check
+
+
+vgscan
+	volume group scan ??
+
+logical volume ???
+
+
+which _____ (specified command)
+	finds the source and path of the comman
+
+
+$
+	use this before a command and the command will run in the background
+
+
+service __________(specified service name)
+	check status of specified service
+
+
+crypstsetup luksFormat /dev/sdb
+	this encrypts the specified drive partition
+
+	*** you can only encrypt a partition that you have not mounted
+
+cryptsetup luksOpen /dev/sdb
+	this creates device mapping to specified partition
+
+cryptsetup –v status enc_partition
+	check to see if the encryption worked
+
+	***"enc_partition" is the 'mkfs point' for encryption. It depends on where you specified earlier
+
+
+cryptsetup luksAddkey /dev/sdb6 /root/passwordfile 
+	this makes it such that you don't need to key in the password anymore
+
+
+
+
+** q stands for query
+
+
+
+rpm -i __________(specified package name)
+	installs specified package 
+
+rpm -e __________(specified package name)
+	removes specified package
+
+rpm -qa
+	this lists all packages installed
+
+rpm --import
+	this registers a public key
+
+rpm --checksig _________(specified package path)
+	check the signature of the specified package
+
+yum install _______(specified package path)
+	installs package using YUM
+
+yum remove ________(specified package path)
+	removes package using YUM
+
+yum list
+	lists all installed and available packages
+
+yum info ___________(specified package path)
+	provide info on specified package
+
+hostname
+	displays the hostname of the linux system
+
+system-config-network
+	this command will open the GUI network settings
+
+shutdown +120
+	this shutsdown the OS in 120 minutes
+
+at 8:00PM
+	schedule a command to run at specified time. Once u have input the commands to schedule, press Ctrl-D to end
+
+at -f schedule.sh 8:00pm
+	schedule a specified file to run at a specified time
+
+atq
+	list all jobs queued
+
+atrm
+	remove specified job from queue
+
+wc -c __________(specified file)
+	count number of characters in specified file. Spaces and tabs count as characters
+
+wc -l ___________(specified file)
+	count number of lines in specified file
+
+ps aux | wc -l
+	counts number of lines when you run the ps aux command which lists all processes running. Number of lines should also match number of processes
+
+wc -w ___________(specified file)
+	count number of words in specified file
+
+system-config-lvm
+	this runs the LVM GUI
+
+realpath _________(specified file)
+	finds the entire system for a specific and prints its full path
+
+_____ -Wall
+	this option means warning message for all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***NOTES***
+
+
+SPECIAL FILE GLOBBING ICON COMMANDS ( to be used with ls or sth )
+if ls without specifying directory then it will be current directory
+*
+	find all
+		eg
+			if files, "bba" and " a ", exists
+			I run " ls *a "
+			I will get both "bba" and " a "
+
+?
+	the " ? ", represents a character 
+		eg
+			if file " bba " exists, 
+			I run " ls a "
+			I won't get anything
+
+			I run " ls ??a "
+			terminal lists file bba
+
+[___(specified characters)]
+	characters in the brackets will be listed
+		eg
+			ls [ae]
+
+			this will list all files starting with a or e
+
+[^___(specified characters)]
+	characters in the brackets will NOT be listed. Opposite of above command
+
+
+
+
+
+
+MAN CHAPTERS
+1. Commands
+2. System Calls
+3. Library Calls
+4. Device Files
+5. File Formats
+6. Games
+7. General Information
+8. Admin Commands
+
+
+
+
+
+
+
+SPECIAL DIRECTORY NAMES
+.
+	Current working directory
+..
+	Parent working directory
+~
+	User's home directory
+-
+	Previous working directory
+
+
+
+IMPORTANT DIRECTORIES
+/tmp
+	Temporal files are stored here
+/etc
+	Configuration files are stored here
+/bin
+	Binary files. Bytecode
+/sbin
+	Binary files for superuser only
+/var
+	Files whose contents changes like log files
+/boot
+	Boot loader files
+/home
+	Users' home directories. Home directories are the first direcotries that are created when user logs in.
+/root
+	superuser home directory
+/media
+	removable media ( USB)
+/mnt
+	Temporal mount points
+
+
+
+
+Kickstart
+	used to easily install RHEL on multiple devices
+
+X11
+	????
+
+VI EDITOR
+	MODES ( press esc to exit mode)
+		Command / Normal
+			this is the default mode
+
+
+
+		Insert ( text input )
+			allows you to edit text
+
+
+
+		Command-line
+			allows you to quit/save
+
+
+
+	COMMANDS
+	i ..... insert text before the cursor
+	I ..... insert text at the begginning of current line
+	a ..... insert text after the cursor
+	A ..... insert text at the end of current line
+	o ..... open a blank above current line to insert text
+	O ..... open a blank line beow current line to insert text
+	x ..... delete the current character
+	dd .... delete the current line and put into buffer
+	D ..... delete the rest of the line from the cursor
+	yy .... copy the current line to the buffer
+	p ..... paste the contents of buffer after cursor position
+	P ..... paste contents of buffer before cursor position
+	u ..... undo last operation
+	.......
+	.......
+	:q .... quit vi
+	:q! ... quit vi without saving changes
+	:w .... save file and remain in vi
+	:wq ... save file and remain in vi
+	:w ______( specified file name )  save file under specified file name and remain in vi
+
+
+
+
+
+Passwords
+	passwords are stored in " /etc/shadow "
+
+	Maximum Password Age [  ]
+		this allows you to set the number days you can use the password
+
+	Minimum Password Age [  ]
+		this allows you to set the number of days before you need to change the password
+
+
+
+
+Users
+	/etc/skel
+		whenever creating new user all files will be from here first. Only when got new directory then the files will move
+
+
+
+
+____(user) 	ALL=ALL 	ALL
+	this would show up in visudo. This means that the specified user is super user
+
+
+/usr/sbin
+	files in /sbin can only be edited by superuser
+
+
+shell
+	there are different shells used to input commands
+
+			bash = bourne again shell
+			sh = Bourne Shell
+			csh = C shell
+			tcsh = 
+
+	several shells can be run at the same time
+
+	shell only interacts with the OS, not hardware. Software only
+
+
+	shell directories
+
+		~/.bashrc_profile
+			contains user specific environment variables
+
+		~/.bashrc
+			contains user specific alias
+
+		shell always runs .bashrc on boot so editing these files changes the defualt configurations
+		Use gedit or sth to edit them idk
+
+
+
+	shell variables ( something like shortcut for alias)
+
+		local variables
+			are available only in the local shell that created it
+
+		environment variables
+			are available in the shell that created it, plus any child process started by the shell
+
+
+COMMONLY USED ENVIRONMENT VARIABLES
+	TERM		Displays user’s terminal info
+	PATH		Specified directories to be searched for executable  files
+	DISPLAY		Specified which X server to be used
+	LANG		Language
+	EDITOR		Default editor
+	PRINTER		Default printer
+
+
+
+UID
+	UID 1- 499 are special accounts for system services. UID 500 and above is accounts that you create
+
+
+
+
+PERMISSIONS
+	they look like this [ --- --- --- ]
+	1st group represents user permissions, 2nd group represents group owner of file permissions, 3rd one is others' permissions
+
+	R = read W = write X = execute
+
+	read means can ls-l
+	write means can edit, add and remove files
+	execute means can go to that directory
+
+
+	by default the user who create a file is the owner of the file
+	by default the file permissions are 666 unless stated otherwise
+
+SGID AND SUID
+	SGID for files makes Linux run the file as the group owner for anyone who runs the file
+	When an SGID for a directory is set, any directory or file created in it will have the same group owner as the parent directory
+
+	When SUID bit is set for a file, if the file is executed, it will be run as the owner ID of the file
+	SUID is not applicable to directories
+
+
+tar
+	tar commands lile " -x ",can also work without the " - "
+
+
+GROUPS
+	group numbers above 499 are primary groups
+
+	PRIMARY GROUP 
+
+	SECONDARY GROUP
+
+FILE NAMES
+	all file names cannot start with a number
+
+BRACES
+	 braces can be used as a shortcut to add words
+	 eg
+	 	mkdir chap{ 01, 02, 03, 04 }
+
+	 which would create chap01, chap02, chap03
+
+	 whereas brackets would calculate the things inside the bracket
+	 eg
+	 	echo $((8*4))
+
+	 would create 32
+
+	 {1 , 2 ,3}
+
+
+
+RUNNING MULTIPLE COMMANDS
+	muliple commands can be run using " ; "
+		eg
+			cd /etc; ls
+
+			this changes directory and lists files. Similar to Java
+
+
+
+SELinux ( security enhanced linux )
+	On bootup, RHEL enters one of the following 3 SELinux states
+		Enforcing : Any action that violates SELinux policy is prohibited and logged
+		Permissive : Any action that violated SELinux policy is logged but allowed to continue
+		Disabled : SELinux not used
+
+	SELinux settings are lost after boot so to make it stay even after boot, edit the /etc/selinux/config 
+
+	SELinux policy =  file permissions
+
+
+PARTITIONING	
+	
+	***instead of rebooting after fdisk, you can use the command "partprobe". reboot still better
+
+	MOUNTING AN ISO IMAGE
+	1. create new direcotry for image
+	2. mount the image
+
+
+
+	ADDING NEW DRIVE
+
+	1. Add hard drive physically
+	2. Go to VM settings to add hard drive
+	3. reboot
+	4. create directory for new drive
+	5. use fdisk to make partitions
+	6. use mkfs to format the drive
+	7. use mount to make drive available for use
+	8. edit /etc/fstab to make settings permanent 
+	9. use GUI for LVM to create volume group ( optional )
+
+		TL;DR
+			fdisk
+			mkfs
+			mount
+			
+
+
+	ADDING SWAP SPACE USING PARTITION
+
+	1. make new partition using existing mounted drive. Partition as a linux swap space. All using fdisk
+	2. use mkswap to declare new swap space
+	3. use swapon to initialise new swap space
+	4. edit /etc/fstab to make settings permanent
+
+		TL;DR
+			fdisk
+			mkswap
+			swapon
+
+
+	SWAP SPACES
+		" cat /prc/swaps "
+			this views all active swap spaces
+
+
+
+
+
+	FSTAB FILE
+		file system table file has 6 columns when you cat it
+
+		1st column 
+			the device to mount (eg /dev/sda1) (the source)
+
+		2nd column
+			the mount point (eg /home) (the target)
+
+		3rd column
+			filesystem type (eg ext3 or nfs)
+
+		4th column
+			extra optons
+
+			 ro      - Read Only
+
+			 rw      - Read Write
+
+			 auto    - Mount on startup
+
+			 noauto  - Do not mount on startup
+
+			 user    - Any user can mount, but only unmount device mounted by him
+
+			 nouser  - Only root can mount & unmount the device
+
+			 users   - Every user can mount and also unmount the device mounted by others
+
+			 owner   - Same as user (above no. 5)
+
+			 dev     - User can use device driver to mount the device
+
+			 nodev  - User cannot use device driver to mount the device
+
+			 exec   - Users can execute binaries on the partition
+
+			 noexec - Users cannot execute binaries on the partition
+
+			 async  - Asynchronous, whenever a file is saved it will be first saved  in the RAM and after 30 seconds all the queued files will be written on the hard disk.
+
+			 sync   - Synchronous, whenever a file is saved it will be directly written to the hard disk
+
+			 suid   - Allow set-user-identifier for the device where users are allowed to run binaries even though they do not have execute permissions. These binaries are temporarily made available to them to perform certain tasks
+
+			 nosuid - Do not allow set-user-identifier
+
+			 defaults - auto, rw, dev, async, suid, exec & nouser
+	
+
+
+	EDITING /etc/fstab
+	gedit /etc/fstab. Add in a new line
+
+
+		" /dev/sdb1	/localdsk	ext4	defaults	0 0 "
+
+		 	"sdb", change this to specified drive
+
+		" /dev/sdb2	swap  swap	defaults	0 0 "
+			this is same as above line but for swap space
+
+			**swap sapces have no mount point so the 2nd column is just 'swap'
+
+			**4th column is extra options but usually just leave as default ( read and write permission)
+
+			**5th column is true false if you want the partition to be backed up
+
+			**6th column is true false if you want the partition to go through checking
+
+			**** the values of the 5th and 6th can be more than 1. The higher number would denote higher priority
+
+
+
+
+
+
+
+
+	**Swap space is storage space for virtual memory. Virtual memory is useful when you run out of RAM
+
+	**fstab means file system table
+
+	**always reboot after edititng partition table
+
+
+
+
+
+
+PROMPT SETTING
+	
+	PS1 (command prompt)
+		the command prompt is the few words beside the cursor whenever you open terminal
+		It should look like
+			[root@localhost Desktop]#
+
+		when its a "#" means you are root user
+		when its a "$" means you are regular user
+
+		the default format is
+			"user" "name of PC / device" "current working directory"
+
+		in terminal it would display this format as
+			"\u@\h:\W\$ "
+
+		to edit PS1, just enter
+			PS1=_____(specified command prompt)
+
+	PS2 (continuation prompt)
+		the continuation prompt appears when you write so much code that it fills an entire line. To simulate fillinf an entire line, enter "\" 
+
+		to edit PS2, just enter 
+			PS2=_____(specified continuation prompt)
+
+
+
+
+ALIAS AND VARIABLE
+	alias is more for commands while variable can be for anything
+		eg
+			alias c=clear
+
+		this means that I assign the command "clear", to "c"
+
+			x=timothy
+
+		this means that I assign "x" to represent "timothy", like algebra
+
+
+REDIRECTION
+	you can use ">" and ">>" to put commands into files
+		eg
+			echo hello > thisFile
+
+	so if I
+		cat thisFile
+	I would get
+		hello
+
+
+	">", single arrow means add and overwite everything in the file
+	">>", double arrow means add while keeping the existing contents of the file
+
+
+
+***APPEND MEANS ADD WITHOUT DELETING EXISTING CONTENT
+
+
+
+
+PIPELINES
+	"|", this symbol is called a pipeline. It is used to combines several commands together in a single line
+		eg
+			touch thisFile | echo hello >> thisFile
+
+	this command would create "thisFile", and add the command "echo hello", into the file
+	can only pipe 1 or 2 commands tgt, not too many
+
+
+
+SCRIPTS
+	scripts are like functions to run. To enable a script to be able to run, you would need a the script to be executable. Use chmod to edit permissions. 
+
+	Linux script syntax requires "#!", to declare what shell the script is running in
+		eg
+			#!/bin/bash
+
+	
+" \ "
+	this works like in java. It makes the space it occupies not intepreted by the terminal. 
+		eg
+			touch chap\1\2
+
+	the file name would be chap12
+
+
+
+BOOT 
+
+	1.
+	2.
+	3.
+	4.
+
+
+	the grub config file is in /boot/grub
+
+	the grub config file is not in the /etc directory because grub needs to be loaded before all the /etc system services
+
+
+
+
+
+
+
+
+GEDIT
+	text editor
+	"#" is used for comments
+
+
+
+VGDISPLAY
+	volume group display.A few physical partitions can be added under one big volume group so that logical partitions can be amde
+
+	vgdisplay is the command to display info about the volume group specified
+
+	LV = logical volume = logical partition
+
+	PV = physical volume = physical partition 
+
+	PE = physical extent = the amount of physical bytes ur using
+
+
+
+
+
+
+
+
+
+
+
+
+REDIRECTION
+	" > " and " 1> "
+		these have the same function. Send specified commands to specified file, over writting everything in specified file
+
+	" >> "
+		this is the same but instead of over writting, it retains the data in specified file. aka append
+
+	" 2> "
+		this is to send the error message of a specified command to specified file. If got no error message then nothing hapens
+
+	" &> " and " >& "
+		this is to send both the error message and the arguments to the specified file, while over writting
+
+	" &>> " and " >>& "
+		this is to do the same function but append
+
+
+
+RECYCLE BIN
+	/dev/null
+		whenever you redirect anythign to this directory, it gets disposed. just like recycle bin 
+
+
+
+GREP vs FIND
+	GREP = globallySearch RegularExpression
+
+	GREP will find all keywords in a specified directory. It is case sensitive
+
+	FIND is an utility for searching file and folders based on size , access time , modification time.
+
+
+
+****GREP expressions (see grep manual for full list)
+	
+	. (wildcard)
+
+		eg
+			grep "x..s" /direct/test
+
+		output
+			antioxins
+			axers
+			axles
+			axees
+			axons
+			boxers	
+
+	(character ranges)
+	[:alnum] 		alphanumeric
+	[:alpha:]		alphabet
+	[:blank:]		space or tab
+	[:digit:]		numeric digit
+	[:lower:]		lowercase letters
+	[:upper:]		
+
+
+LUKS ENCRYPTION ( Linux UNified Key Setup )
+	1. create a new partition using fdisk ( dont mount it or mkfs )
+	2. format the partition to be encrypted with LUKS
+		cryptsetup luksformat ______(specified sdx to format)
+	3. create device mapping 
+		cryptsetup luksopen ______(specified sdx to format) ____(give a name for this device mapping. no need file extension type) 
+	4. format with mkfs
+		mkfs -t ext4 /dev/mapper/_____(name you gave)
+	5. store your password somewhere
+		echo "<password you set>" >> <specified name of password directory, you can give any name>
+	6. add this line to the /etc/crypttab to save the password of the partition. use gedit
+		<device mapping directory> <specified sdx> <password direcotry>
+	7. (optional) make password automatically input itself every boot
+		_____(name you gave) _____(specified sdx you to format)
+
+	 
+
+
+
+
+
+
+****NETWORKING
+
+	**HOW TO CHANGE DNS SERVER
+	DNS is a netowork protocol used to resolve hostnames into IP addresses
+	1. edit the directory
+		/etc/resolv.conf
+	2. You'll know when you see it 
+
+
+
+/etc/services
+	cat this file to view services' port numbers
+
+
+/etc/sysconfig/network
+	if you want any changed netowrk settings to persist beyond reboot, edit this directory
+
+	****Parameters of the /etc/sysconfig/network
+		this directory has a few variables to edit 
+		eg
+			NETWORKING=NO 
+		this means that all networking related tasks are suspended
+
+			HOSTNAME=localhost.localdomain
+		this is the name of the system. You can edit the name
+
+/etc/sysconfig/network-scripts/ifcfg-eth
+	if you want to edit IP settings to persist beyond reboot, edit this directory. This is also called the interface config file
+
+netstat
+	views info about all open ports
+
+host _________(specified website)
+	displays IP address of specified website
+
+hostname
+	displays hostnmae of current system
+
+ifconfig ________(specified eth network interface) down
+	shut down specified netowkr adapter
+
+ifconfig ________(specified eth network interface) down
+	turn on specified network adapter	
+
+
+	**HOW TO CONNECT TO NEW CONNECTION (GUI method)
+	1. right click on network icon and edit
+	2. Enter any connection name
+	3. Make method manual
+	4. Under IPv4 settings, add new address
+	5. Apply and restart network interface
+
+
+	**IP ALIAS
+	Several IP addresses can be used to refer to the same network interface. To do this you need to setup an IP alias. One network interface can have several IP aliases too
+		ifconfig eth0:1 172.16.32.009 netmask 255.255.0.0 up
+
+	eth0				this refers to specified netowkr interface
+	:1					this refers to specified alias serial number
+	172.16.32.009		this refers tot he IP alias you want to set up
+	netmask 255...		this refers tot he netmask address you want to set up
+	up 					this turns on the interface
+
+
+
+
+
+
+****BOOT AND SHIT
+	
+
+	**BOOT SEQUENCE
+	BIOS >>	Bootloader >> Kernel >> /sbin/init
+	
+	Changing shell before boot
+	edit the grub file before boot and add "init=/bin/sh"
+	
+
+	****GRUB (GRand Unified Bootloader)
+
+	grub-install
+	this command installs grub
+
+	What is GRUB ? 
+	grub is a bootloader. It's the next stage after BIOS. It runs the system services and loads OS
+
+	How to reset root password ?
+	For RHEL, add " selinux=0 1", after the word " quiet". With a space between. This is editing the /boot/grub/grub.conf file.
+	--> if you remove "rhgb" and "quiet", boot messages are shown when booting
+
+	How to add password to GRUB ?
+	To prevent the directory from being edited, enter the command,"grub-md5-crypt", to add a password. This command will return the encrypted code of ur password. Copy that code. 
+	Then edit /boot/grub/grub.conf and add "password --md5 <code>", before the title
+
+
+
+	****init levels (aka gpm run levels)
+
+	init 6 is reboot. But what wbout the others ? View the directory, "/etc/inittab", to see the different levels.
+
+	init 0		shutdown
+	init 1		single user mode
+	init 2 		multiuser mode without NFS
+	init 3		full multiuser mode, no GUI
+	init 4		unused
+	init 5		the standard mutiuser mode with GUI
+	init 6		reboot
+
+
+	What is Single user mode?
+	Single user mode is like safe mode. As little system services are loaded. Instead of having multiple users being able to log in, single user mode forces only one superuser to log in
+
+	How to enter single User mode before boot?
+	edit the crub config file and add "single" as a single wordat the end
+
+	Default init level
+	To edit which init levels to run on boot, edit the /etc/inittab file. Change the number after "id:", to your desired init level.
+
+
+
+	****Services
+
+
+	ls /etc/rc.d/init.d
+	view all service scripts
+
+	system-config-services
+	run GUI service manager
+
+	These commands start, stop, and restart specified services
+	service <servicename> start
+	service <servicename> stop
+	service <servicename> restart
+
+
+	chkconfig 
+	will display which services will run at each init level
+
+	chkconfig --list sshd 
+	will display which init level will run sshd
+
+	chkconfig --level 5 sshd off 
+	this will disable sshd to run on init 5
+
+	chkconfig sshd on
+	this will enable sshd to run on all init levels at boot. Persists beyond reboot
+
+	chkconfig sshd restart
+	this will shutdown and run the sshd
+
+	chkconfig sshd reload
+	this will reload this service without shutting it down 
+
+
+
+
+
+****System info
+
+cat /proc/cpuinfo
+this displays cpu info
+
+
+cat /proc/meminfo
+this displays memory info
+
+
+
+
+
+FILESYSTEM
+a file system controls how data is stored and retrieved.
+
+
+
+
+
+****PROCESSES
+
+ps -ef
+display all processes
+
+top
+runs the process monitor programme
+	
+gnome-system-monitor
+runs the GUI process monitor programme
+
+pstree
+view the process tree
+
+sleep ___(specified time in seconds)
+this is a process that just sleeps for the specified amount of time. Good for testing commands 
+
+
+
+	What is a process ?
+	it is an instance of an application running
+
+	**PROCESS STATES
+	runnable (R)				process is running
+	sleep (S)					process has nothing to do
+	invounlantary sleep	(D)		process is waiting for a resource
+	suspended (T)				process is suspended by user
+	zombie (Z)					process going through terminating
+
+
+
+
+
+	**PROCESS PRIORITY
+	processes have 2 priority values. Priority and niceness. Priority is the default priority while niceness is the user defined priority. the lower the number, the higher the priority. By default the nice value is 0
+	Priority value is between 0 and 139.
+	Nice value is between -20 and +19.
+
+	Priority = 20 + Niceness
+
+	It is possible to change the priority value and niceness value
+
+	nice -n <nice value eg. +5> <process id (PID) or name>
+	this command changes the nice value of a process when it starts 
+
+	renice -n <nice value eg. +5> <processq id (PID) or name>
+	this command changes the nice value of a process that is already running
+
+	eg.
+		nice -n +5 sleep 20
+
+	**SIGNALS
+	signals are used to interrupt (request termination) a process. There are different signals identified by numbers.
+
+	2		SIGINT		interrupt process. Same signal sent by Ctrl-C
+	9		SIGKILL		force termination
+	15		SIGTERM		terminate properly, allow cleanup first
+	20 		SIGTSTP		suspend the process. same signal sent by Ctrl-Z
+
+
+	kill ____(specified PID)
+	this sends a kill signal to the specified process 
+
+
+
+	**JOBS
+	by default, processes run in the fireground. Background processes are called jobs
+
+	jobs
+	this command displays all currently running jobs
+
+	fg _____(specified job number)
+	brings the job to the foreground
+
+
+
+
+
+
+KERNEL
+	it acts as an interface between the user applications and the hadware. Something like drivers ? Initial ram disk is bound to kernel
+
+	the conventional name of ram disk is sth like,
+		/boot/initramfs-2.6.32-8.img
+
+
+
+
+
+
+RPM (Red Hat Package manager)
+	RPM installs packages from a source repository and stores in in a library
+
+	a package is a compressed file that contains all the files needed for an application. It's like the installer in Windows. Packages are usually in .tar . The contents of the package is usually in .rpm
+
+	all installed software is stored in 
+			/var/lib/rpm
+
+	Red Hat digitally signs every rpm package file it distributes with a GPG private key. 
+	By verifying the signature, we can be sure that the package has not been illegally modified.
+	To verify the signature, we need to get the Red Hat public key
+	The keys can be found in
+		/etc/pki/rpm-gpg
+
+
+YUM (Yellow dog )
+	YUM is like RPM, it installs packages. But it also installs all required files for the package to work. RPM doesn't
+
+	to download packages from the YUM repository, a definition file is set up in
+			/etc/yum.repos.d
+	so that it will connect to the specified repository, as specified in the definition file
+		eg.
+			/etc/yum.repos.d/thisfile.repo
+
+
+	the contentes ~
+		eg
+			[rhel-yum-server]
+			name=Yum server
+			baseurl=ftp://yumserver/pub/Server
+			gpgcheck=0
+			enabled=1
+
+
+	*for baseurl, you can input "file:", or "http:", or "ftp:", these are the protocols to retrieve the specified directory
+
+	*to check if server can be accessed and the definition file is properly set up, 
+		yum info
+
+	once you set up the repo file, you can just use this command
+		yum install _______(specified package directory)
+
+
+FTP (file transfer protocol)
+	this protocol is run as a service to serve out files.
+	config file at
+		/etc/vsftpd/vsftpd.conf
+
+
+
+DAEMON
+	a daemon is like a job. Both are processes that run in the background. The difference is that daemons run actively at all times while jobs usually run for a single period. 
+
+	the atd daemon allows users to schedule commands to be run at a later time. The at command is used to run this process
+
+
+	**CRON
+		the CRON daemon is used to automate jobs that occur at fixed itnervals. To run a CRON daemon, you will need to create a CRONtab file.
+			crontab -e
+		this will bring you to the vi editor to input commands for the crontab file you are creating.
+			crontab -l
+		this lists all cron jobs by root
+			crontab -r
+		this deletes the crontab file
+
+		*crontab syntax (can just view the /etc/crontab to see the syntax)
+
+			***** <command>
+
+			1st asterisks is minutes ( 0 -59)
+			2nd 		  is hour (0 - 23)
+			3rd			  is Day of month (1-31)
+			4th 		  is Month of year ( 1- 12)
+			5th 		  is Day of week ( 0 -7, 0 being sunday)
+
+		if you want to run the command every interval, add a "/"
+
+			eg
+				*/10 * * * * echo " fuck your mother cheebye" >> text.txt
+
+			this will run the command every 10 minutes
+
+
+
+NTP ( Network Time Protocol)
+ 	this protocol can be used to synchronise the local time and date to a server. Use GUI date and time
+
+
+NFS ( Network File System )
+	this is a service that is used for sharing files and directories over a network. A NFS server would give NFS clients a direcotry to mount. This direcotry can be mounted by several clients.
+
+	**how to setup a NFS server
+	1. create a directory for ur server with some contents 
+	2. edit the /etc/exports direcotry with 
+		/<server directory name>  *(rw)
+	   this makes the server directory have read and write access by all. To make to read only, it's (ro)
+	3. start the NFS service
+		service nfs start
+	4. job done. Use
+		showmount -e
+	   to check if the directory has been mounted
+
+	any PC connected to this server PC can access this directory
+
+	**how to connect to a NFS server
+	1. create a directory to store all data from the server to this local directory ( aka mount point)
+	2. mount your local direcotry to server
+		mount <server IP>:<server directory> <mount point>
+	3. If succcessfully mounted, you should be able to 
+		ls /<server directory>
+
+		*to make mount point persist beyond reboot, edit fstab file
+
+
+
+atfs (AUTOMOUNTER) 
+automounter is a daemon that automatically dismounts a drive if it is not used ro a period of time. This saves resources. When the user wants to access the drive, the daemon would mount it back automatically.
+To configure atfs
+	/etc/auto.master
+
+	**How to run atfs
+	1. check if autofs service is running
+		service autofs status
+	2. edit /etc/auto.master, adding these lines
+		<specified directory you want to run autofs>	/etc/auto.<name of specified directory>
+
+		eg.
+			/misc	/etc/auto.misc --timeout=60
+
+		adding this line into the /etc/auto.master file would run autofs on /misc. Inactivity of 60 seconds would dismount the direcotry automatically
+	3. edit the "auto. " file. Add this line
+		<specified directory you want to run autofs aka the mountpoint> <options>,soft 	  <server IP>:<source of mount>
+
+		eg.
+			etc/data -ro,soft 	127.0.0.1:/share
+
+		*if mounting to local drive, then use local PC's IP address
+
+
+
+
+httpd (hypertext Transfer Protocol Daemon)
+this is a daemon that runs http 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+LINUX KEYBOARD SHORTCUTS IN TERMINAL
+
+Ctrl + L
+	clear terminal of all commands
+
+arrow key up
+	input previous command
+
+Ctrl + Alt + F2
+	non gui login
+
+Ctrl + D
+	logout of user. When alr logged out, the command would close terminal, which will further log out from Linux. Sth like Alt+F2 in windows. Basically exit
+
+Ctrl + S
+	pause program
+
+Ctrl + C
+	stop program
+
+Ctrl + Q
+	continue program
+
+Ctrl + Z
+	pause and add program to queue
+
+Tab
+	after keying in a command, or partially keying in a command, pressing tab will list out several possible commands like autofill

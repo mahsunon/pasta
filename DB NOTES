@@ -1,0 +1,400 @@
+***SQL COMMANDS***
+
+CREATE DATABASE _________(specified name)
+	creates a database with specified name
+
+DROP DATABASE ___________(specified database name)
+	deletes the specified database
+
+CREATE TABLE ____________(specified table name)
+	creates a table with specified name
+
+DROP TABLE ______________( specified table name)
+	deletes a the specified table
+
+SELECT * FROM ___________(specifed table name)
+	prints the specified table
+
+SELECT name FROM master.dbo.sysdatabases
+	prints all created databases
+
+INSERT INTO _______ ( specified table) (_________)  (specified columns, separated by comma)
+VALUES (__________) (specified values, following the order of the columns input earlier)
+
+	^this is how to insert a value into a column with the column specified^
+		eg
+			INSERT INTO Course_Relation 
+				(Crse_Cd, Crse_Name, Offered_By, Crse_Fee)
+			VALUES
+				('DBA','Diploma in Business Administration','SB',500.00)
+
+	*if you don't want to specify which column to add value, then inside the VALUES bracket, you need to include all values to insert into all exisiting columns*
+		eg
+			INSERT INTO Course_Relation 
+			VALUES
+				('DBIT','Diploma in Business and Information Technology','DMIT',700.00,100.00)			
+
+		*the number of arguments in the bracket match the number of columns in the Course_Relation table
+
+		*note that when inserting values, numeric values dont need to be in inverted commas
+
+
+UPDATE ________ (specified table)
+SET ______(specified column) = _______(specified values. Can be arithmetic)
+WHERE ________(specified conditions. Can be arithmetic)
+	
+	^this is to specifically change the value of a specified column, or a group of cells, using the conditions^
+
+		eg
+			UPDATE Staff_Relation
+			SET pay = pay + 100
+			WHERE Gender = 'M' and Join_Yr <  1996
+
+DELETE FROM ______(specified table)
+WHERE ___________(specified conditions)
+
+	^this is to delete a column that matches the specified conditions, from the specified table^
+
+		eg
+			DELETE FROM Staff_Relation
+			WHERE Staff_No = 'T001'
+
+
+SELECT _______(specified columns) FROM ______(specified table)
+	prints all the values of the specified column from the specified table
+
+		eg
+			SELECT country, email FROM address
+		
+		*this print the country and email column from the table "address"*
+
+	>you can also rename the column name as an alias<
+		eg
+			SELECT country AS 'country name, email AS 'email addr' FROM address
+
+
+	>you can also sort the cells<
+		eg
+			SELECT country, email FROM address ORDER BY country ASC, email DESC
+		note that you can apply several "ORDER BY". Just put comma
+
+	>you can also remove duplicates<
+		eg
+			SELECT DISTINCT country, email FROM address
+
+	***WILDCARDS (like in linux) (placeholders?)
+
+
+	'%' 
+		eg
+			SELECT country , name FROM address WHERE country LIKE s% 
+
+		this means all countries with 's' at the start would be printed
+
+	'_'	
+        eg
+															 LIKE s_
+		this means all countries with s in front and another character after
+			so
+			sa
+			sq
+			st
+		  ^ all these	
+
+
+***appending column names
+	eg
+		SELECT name + ' and ' + address FROM book
+
+	this would print 
+		tim and kovan
+		bek and kovan
+		mah and kovan
+
+
+***appending values
+	price + '' + price
+
+
+***print only parts of a string from a cell
+	eg
+		SELECT name, SUBSTRING(address, 2,3)
+
+	this would print
+		tim van
+		bek van
+		mah van
+
+	^start from 2nd char, print 3 chars
+
+
+
+
+
+***GROUP BY
+	hard to explain go see pic
+
+***HAVING
+	when using GROUP BY to print only a group of elements, you can also use HAVING to add more conditions
+		eg
+			GROUP BY supplier_ID 
+			HAVING AVG(qty) > 20
+	see lesson 7 sides for more. You can use WHERE tgt with GROUP BY and HAVING.
+		eg
+			WHERE supplier_ID != NULL
+			GROUP BY supplier_ID
+			HAVING AVG(qty) > 20
+
+	WHERE is always executed first to filter rows before grouping them
+
+
+CREATE TABLE table1
+	(____________)
+PRIMARY KEY ______
+FOREIGN KEY column
+REFERENCES table2(column)
+
+	^ when a column is being referenced by another table, must indicate that it is being referenced by using REFERENCES. the column that is being referenced elsewhere is known as the FOREIGN KEY ^
+
+
+
+ALTER TABLE table1
+ADD FOREIGN KEY (column)
+REFERENCES table2(column)
+
+	^ use these to add foreign key to a table^
+
+
+
+***DELETED REFERENCED COLUMUMNS
+	if a column in parent that's referenced in child is deleted there are several ways to deal with the issue
+
+	1. CASCADE
+		delete the entire row from parent, and all other rows that referenced the column in child
+
+		eg
+			CREATE TABLE table1
+			(__________________)
+			PRIMARY KEY ________
+			FOREIGN KEY column1
+			REFERENCES table2(column1)
+			ON DELETE CASCADE
+
+		eg (if adding onto exisiting table)
+			ALTER TABLE table1
+			ADD FOREIGN KEY _____
+			REFERENCES __________
+			ON DELETE CASCADE
+
+	2. NO ACTION
+		don't do anything. The child that referenced the parent would now have empty cells. This might be problematic
+
+		same syntax
+			eg
+				ON DELETE NO ACTION
+
+	3. SET NULL
+		instead of empty cells, they are NULL cells instead
+
+		same syntax
+			eg
+				ON DELETE SET NULL
+
+	4. SET DEFAULT
+		the cells will be replaced with the speicfied default value
+
+		same syntax
+			eg
+				ON DELETE SET DEFAULT
+
+		to specify the default value, specify it after declaring the variable data type
+			eg
+				nameID		char(20)	Not null    default"no name"
+
+
+***dob function
+	if column holds date values you can use specific parts
+		eg
+			WHERE YEAR(dob) > 2000
+
+
+
+DELETE FROM ________(specified column) WHERE_____(specified condition)
+	delete all cells from specified column with specified condition
+
+
+
+
+
+
+
+***UPDATED REFERENCED COLUMNS
+	you can also change settings when a referenced column is updated
+
+
+	1. CASCADE
+		if the parent updates, child also updates
+	2. NO ACTION
+		literal
+	3. SET NULL
+		child turns into NULL
+	4. SET DEFAULT
+		cell is replaced by default value. Must specify what the default value is
+
+
+	ON UPDATE SET ________(specified setting)
+
+
+
+
+***Represeting the EERD in SQL ( aka joining tables)
+	when u apply the EERD to convert m:m relationships, the resultant entity aka Cartesian Product  can be represented in SQL
+		eg
+			SELECT * 
+			FROM ____,_____ (entity 1, entity 2)
+			WHERE _____ = ______ (the 2 attriubutes from each entity that is the same as each other)
+
+			SELECT *
+			FROM table1, table2
+			WHERE table1.IDa = table2.IDb
+
+	you can also join more than 2 tables. Same syntax
+		eg
+			SELECT _______ (columns you want)
+			FROM _____,_____,_____,____ (all the entities u want)
+			WHERE _____ = ______ (the 2 attriubutes from each entity that is the same as each other)
+
+
+
+***FUNCTIONS
+
+
+GETDATE()		current date/time
+UPPER()			convert specified string to uppercase
+LOWER()			convert to lower
+LEN()			the number of chars in specified string
+AVG()			the mean of the specified number
+SUM()			the sum
+COUNT()			the number of non-null cells in the specified column
+MAX()			the highest value in the specified column
+MIN()			the lowest
+DATEDIFF()		eg below
+				SELECT DATEDIFF(month, '2017/08/25', '2011/08/25') AS DateDiff
+
+
+	*if DISTINCT is used inside the brakcet, then duplicates are ignored
+
+
+
+ISNULL(____ _________)
+	use the ISNULL function and 2 arguments to convert any null to specified value. If argument 1 is null, convert to arg 2
+	eg
+		SELECT  ISNULL(price,0) as ' price' FROM table1
+	
+
+***scalar subquery
+	a subquery is like a query inside a query. A "SELECT FROM" inside a "SELECT FROM". Nested "SELECT FROM". Scalar subqueries only returns data from one column
+	eg
+
+		List the prod code, prod dec, and unit price of the product where unit price is more than thr average unit price of all the products
+
+		SELECT prod_code,prod_desc,unit_price
+		FROM product
+		WHERE unit_price >
+		(SELECT avg(unit_price) FROM product)
+
+***table subquery
+	table subquery is a subquery that returns data from several columns
+	eg
+
+
+
+
+***VIRTUAL TABLE ( a view)
+	you can SELECT FROM to list specified data. To list the data again, you can store the SQL statement into a variable and give it a name. Create virtual table.
+	eg
+		CREATE VIEW view1
+		(product-code,product-decription)	
+		AS
+		SELECT prodCode,prodDesc
+		FROM product p, supplier s
+		WHERE p.proCode = s.prodCode
+
+
+
+***NORMALISATION
+	 UNF tables can also be represented in SQL statement
+	 	eg
+	 		table/relationship1(column/attribute1, column/attribute2,{column with multi value1,column with multi value2} )
+
+
+
+
+BETWEEN
+	"Include only those events that are held from June 08 till August 08"
+	answer
+		WHERE EventDate BETWEEN ‘1 June 08’ AND ’31 Aug 08’
+
+
+
+
+
+
+***DATATYPES
+	when creating table, you can assign what data type the columns would hold
+
+	char()					character. Specify how many characters
+	varchar()				same as char but dynamic array
+	decimal(x,y)			double type stored as string. x is the total number of digits. y is the number of digits after decimal point
+	int(x)					yknow
+	float(x,y)				x and y same as decimal
+	double(x,y)				yknow
+	date() 					yknow
+	time()
+	year()
+
+	*note that when inserting values, numeric values dont need to be in inverted commas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+***NOTES***
+
+don't start table name with number
+
+
+
+
+SQL is case insensitive
+
+tables and databases cannot share same name. Attributes can
+
+enclose literals with single quote '  '
+
+the product of the EERD conversion is called the cartisan product
