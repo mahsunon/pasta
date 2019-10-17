@@ -1,0 +1,422 @@
+EHD NOTES
+
+The shell of a computer is a piece of software that allows users to directly communicate with the kernel, the very core of an operating system
+
+
+*****PING
+the ping command is used to troubleshoot network devices. When you ping a device, a few bytes of data is sent to the receiving device. The recepient would then return the packets. This exchange of packets shows that the devices can communicate with each other. 
+
+Ping uses ICMP - INTERNET CONTROL MESSAGE PROTOCOL
+ICMP is an internetwork layer protocol. Such protocols define how packets are routed through an internetwork. The ICMP echo ping packet has its own unique layer
+
+SNMP usually uses port 161
+
+Some servers disable ICMP so when you ping but don't receive a reply, it doesn't always mean the server is offline.
+
+
+
+
+
+
+SNMP WALK ???????????????
+
+
+
+*****WIRESHARK FILTER COMMANDS
+wireshark is a program that allows you to monitor and see incoming and outgoing packets. 
+
+ip.src==___________(specified ip)
+ip.dst==___________(specified ip)
+
+ip.addr>= 192.168.1.0 && ip.addr <= 192.168.1.255		[this is for range of ip addresses]
+ip.addr==129.111.0.0/16													[this is for subnet]
+
+tcp.flags.syn==1
+tcp.flags.ack==1
+
+
+
+*****TTL - TIME TO LIVE
+TTL field in a packet indicates how many hops the packet is allowed to travel before it is discarded. Without TTL pakcets might circulate in a network forever
+
+The default TTL value of a packet can tell you what OS the packet was sent from. For instance most Windows default TTL is 128, while most Linux TTL is 64. If you run a VM and sent a packet through the VM, the packet would inherit the host PC's default TTL
+
+
+*****PACKETS
+Computers transfer data in bursts of data so that if an error occurs only the affected chunks of data is lost, and not the entire file. These chunks are known as packets.
+
+Packets contain source and destination IP address. If they carry MAC address, then they are known as frames. If the packet in encrypted, the contents of the packet cannot be read.
+
+
+*****HTTP - HYPER TEXT TRANSFER PROTOCOL
+HTTP is an application layer protocol. Web browsers use this protocol to access data on the internet. It delivers HTML, CSS, and javascript files. 
+Howeveer HTTP packets are not encrypted. 
+
+
+
+*****NETSTAT - NETWORK STATISTICS
+NETSTAT is a network utility tool that displays network connections for TCP, port numbers, and other network statistics
+
+
+*****FTP - FILE TRANSFER PROTOCOL
+FTP is a basic application layer protocol to transfer files. However the data is not encrypted so it is not safe. 
+
+
+
+****SSH - SECURE SHELL
+SSH is also used to transfer files but its newer and updated with more features. PAckets are encrypted
+
+
+*******NETWORK PROTOCOLS
+A network protocol is a set of rules and procedures for communication. The internet and most OS use TCP/IP as their protocol
+
+TCP/IP = Transmission Control Protocol / Internet Protocol
+
+TCP/IP is composed of several protocols operating at different layers
+
+	<TCP/IP MODEL>
+_LAYER_ 		_DATA TYPE_ 		_PROTOCOL_
+APPLICATION 	DATA				HTTP|FTP|DHCP|TFTP|SMTP|POP3|DNS|SNMP
+TRANSPORT 		SEGMENT/DATAGRAM	TCP |UDP
+INTERNETWORK 	PACKET				ICMP|ARP|IPsec|IPv4 + IPv6
+NETWORK ACCESS 	FRAME				ETHERNET|TOKEN RING|FDDI|WAN technology
+
+
+
+
+******NAT - NETWORK ADDRESS TRANSLATION 
+
+
+
+
+***HOW TO FIND MAC ADDR, GIVEN IP
+
+
+
+
+
+
+
+
+
+
+
+top firewal rules will always preceed 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+WEB APPLICATION SECURITY
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+
+>>>>>CROSS SITE SCRIPTING (XSS)
+	1. in broswer, login into website with
+			<scriot>alert("you got hacked bitch");</script>
+		this will create an alert
+
+
+	2. in broswer, login into website with
+			<Script>document.location="pornhub.com"</script>
+		now everytime you try to access the login page, you will go to porn instead
+
+
+
+
+
+>>>>>CROSS-SITE REQUEST FORGERY (CSRF)
+	~~~
+
+
+
+
+
+>>>>>SQL INJECTIONS
+	
+	1. The most basic one liner
+					ewfwef' OR '0'='0
+
+
+	2. if you have table name name, brute force column name
+					ewfwef' OR '0'='0' UNION SELECT <column name> from <table name> #
+					( the # at the end comments out all other commands )
+
+
+	3. try get table names
+			in MySQL, there is a special database "informqation_schema" that contains a table called "tables"
+			which holds information about all tables
+					ewfwef' OR '0'='0' union select table_schema, table_name from information_schema.tables #
+
+
+
+
+>>>>>FORCED BROWSING
+try brute force and guess other file names
+	www.thiswebsite.com/?page=file1.php
+
+		 instead of "file1.php", try "file2.php" or sth
+
+
+>>>>>FILE INCLUSION
+	brute force to see other files in the server
+		www.thiswebsite.com/?page=..\..\..\..\pics
+
+		"..\" is to go previous directory
+
+
+
+
+
+
+
+>>>>>CRACK PASSWORD WITH JOHN THE RIPPER
+
+	1. in Kali, CD to the directory of ur john the ripper program
+
+	2. run the program with the password as parameter
+			john 	<path of the text file with the hashed password>
+
+	3. the program will return the possible hash algorithms used
+
+	4. try the different algorithms eg.
+			john --format=<hash algorithm> <path of password file>
+
+	5. infer which algorithm is the correct one
+
+
+
+
+
+>>>>>BURPSUITE
+	>>>>>view entire structure of website and HTTP requests
+	
+		1. in Kali, set browser HTTP proxy to ur loopback address eg. 127.0.0.1, and port 8080
+
+		2. in browser, try login to website with any credentials
+
+		3. in burpsuite, clock on target tab, then site map
+
+
+
+	>>>>>perform disctionary attack to guess password and username
+
+		1. create a text file containing possible usernames 
+
+		2. create a text file containing possible passwords
+
+		3. in burpsuite, go to proxy tab, then turn on intercept
+
+		4. in browser, try login to website with any credentials
+
+		5. in burpsuite, see the intercepted packet. Click on 'action' and choose 'send to intruder'.
+			under intruder tab, click on positions.
+
+		6. find the username value eg. "?username=admin" and click 'add'
+
+		7. find the password value eg. "&password=123" and click 'add'
+
+		8.  Change attack type to cluster bomb
+
+		9. go to 'payloads' tab
+
+		10. payload set 1 is for username and payload set 2 is for password. Load the username and password text files from before to the respective payload sets
+
+		11. go to 'options' tab. Check 'store requests' and 'store responses'
+
+		12. go to 'intruder' and 'start attack'
+
+		13. look through the response for each combination and see which one returns a login successful webpage or sth
+
+
+
+PAROS
+	>>>>>change the login session variable to become 'OR true' to gain login to a website
+
+		1. in Kali, set browser HTTP proxy to ur loopback address eg. 127.0.0.1, and port 8080
+
+		2. in paros, go to 'trap' tab and check 'trap requests'
+
+		3. in browser, try login to website with any credentials
+
+		4. in paros, keep clicking continue until you find the 'POST' HTTP request request. It should look sth like that:
+				username=admin&password=123&jsenabled=1&userid=789
+		
+		5. add 'OR true' 
+				(username=admin OR true)&(password=123 OR true)&jsenabled=1&userid=789
+
+		6. uncheck the 'trap request' and continue. This should gain you access
+
+
+
+	>>>>>find more attribute names from a doGet request 
+
+		1. in Kali, set browser HTTP proxy to ur loopback address eg. 127.0.0.1, and port 8080
+
+		2. in paros, go to 'trap' tab and check 'trap requests'
+
+		3. in browser, try login to website with any credentials
+
+		4. in Paros, go to 'network' tab and check 'trap response' and 'trap request'
+
+		5. keep clicking 'continue' until the doGet request packet
+
+		6. you should see other attribute names from the doGet request packet
+
+		7. if you see any "userid" parameters, you can try increase the userid by 1 to try view the next user
+
+
+	>>>>>if already logged in, modify another user's credentials
+
+		1. in Kali, set browser HTTP proxy to ur loopback address eg. 127.0.0.1, and port 8080
+
+		2. in paros, go to 'trap' tab and check 'trap requests'
+
+		3. in browser, try login to website with any credentials
+
+		4. keep clicking 'continue' until the doGet request packet 
+
+		5. change your userid to the userid of the profile you want to change
+
+		6. change the 'GET' at the top let corner to 'PUT'
+
+		7. change content-type to 'application/json'
+
+		8. send the request and you should have changed the other user's credentials
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+INTRUSION DETECTION SYSTEM (IDS)
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+
+>>>>>intercept network traffic and output to a file in WinXP
+
+1. in cmd, enter " c:\snort\bin\snort -W " to list available
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VPN: you are at home but ur PC is virtually inside the company's network
+your IP address will change to the company's internal IP addr through encapsulation
+**see EHD VPN slides for diagram on encapsulation
+this is similar to NAT
+
+different VPN protocols means the packet will have different structure
+
+the threshold before VPN becomes slow is dependent on the hardware. Best to have a specific device solely for VPN
+but hardware VPN is fking expensive $30,000
+
+using VPN also means  that if an attacker is inside he can easily extract data out of the firewall too
+
+to mitigate this, anomaly based IDS is useful
+
+that's why firewall compliments VPN
+
+VPN, telnet, SSH can never be used in super super important critical systems 
+
+
+
+hardware VPNs are not dependent on OS ?
+
+

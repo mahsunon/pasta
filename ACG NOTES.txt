@@ -1,0 +1,126 @@
+ACG NOTES
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+					DES - DATA ENCRYPTION STANDARD
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+- symmetric block cipher
+- uses feistal scheme
+- 16 round functions
+- final permutation (transposition)
+- 64 bit block size
+- 56 bit key size 	( +8 parity bits)		 [parity bits check if the key has been altered]
+- relatively small key size makes it weak
+
+
+greater complexity is more secure but needs more hardware to process
+
+cannot be secure and fast at the same time
+
+
+Stream cipher: they process messages one bit/byte at a time
+Block cipher   : they prcoess messages in blocks. Block size is based on encryption method
+
+
+substituion: changing the value of the bit in 1 block
+permutation: changing the order of the bits in 1 block
+transpotation: see the transpotation pic
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+		SYMMETRIC BLOCK CIPHERS
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+1. substitution-permutation network
+
+	-provides confusion and diffusion of message and key
+		confusion: 
+			makes relationship between cipher text and key as complex as possible using substitution
+
+		difussion:
+			makes relationship between plain text and cipher text as complex as possible using permutation or transposition
+
+
+
+
+2. feistal scheme
+	
+	- used in DES
+	- see fesital scheme pic
+	- a round function is performed each round. No need to know how it really works
+
+	factors of cipher complexity
+		~ block size
+		~ key size ( why ?)
+		~ number of rounds
+		~ subkey generation algorithm
+		~ round function
+
+	decryption is the same but left and right swap places.
+	Use the subkey in reverse order
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*****DES
+
+DES uses classical feistel scheme. It has a 64bit block and a [56bit + 8bit parity] 64bit key
+See the DES diagram
+
+The 64bit block will be split into 2x 32bit parts. The left and right block.
+The left block will go through the first round of encryption. Left block will go through XOR with a function. This function requires 2 parameters. A 48bit subkey and right block. 
+
+The 48bit subkey is generated from the 56bit key using a subkey generation algorithm.
+
+After the left block has gone through XOR with the function, the left block becomes the next round's right block while the initial right block becomes's the next left block.
+
+This process goes through n number of rounds to produce the cipher text
+
+Each round's function works by 
+
+
+
+
+
+
+***** AES
+
+AES requires a data block that's in multiples of 16bytes. 16byte, 32byte, or 64byte.
+If the data block is 14bytes, then there will be a 2byte padding.
+If the data block is 28bytes, then there will be a 8byte padding.
+
+
+
+
+
+SHA-512 is faster than SHA-1 because it has bigger word size.
+
+
+
+pre-image resistant means that 2 plaintexts will never produce the same hash when encrypted
+
+collision resistant also means that same thing but 
+
+
+
+
+must memorise the diffie-Hellman secret key formula ( must know to to do mod )

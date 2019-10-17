@@ -1,0 +1,287 @@
+***COMMANDS***	
+
+/* */
+	comments
+
+#define X 	1024
+	this sets X to 1024. So whenever you write X anywhere in your main function, it actually is 1024. Something like a shortcut. This needs to be outside the main function, usually all the way at the top.
+
+#include <stdio.h>
+		this is declaring the standard in out library. std-io, standard input output. Printf, scanf is inside this library. If these commands are not used, no need to include.
+
+#include <stdlib.h>
+		this is delcaring the standard library. Commands like atoi is inside. If these commands are not used, no need to include.
+
+void main( int argc, char * argv[]);
+		enter these parameters if you want to use command line arguments
+
+scanf();
+	scanf is used to read an user input and store the input in specified variable/array. It requires #include <stdio.h>. used for prompting user for inputs
+
+_____(variable name) = atoi(____(string name))
+	array to integer. Conerts a string to an integer. If conversion was invalid, eg. invalid formats, then 0 is returned. Good for checking
+
+sprintf
+	similar to printf but instead of printing to the screen, you print to a string
+
+
+cc -wall
+	the wall flag means that all the warnings that the cc authors thought were worthwhile, would be enabled
+
+
+
+
+
+
+
+
+***NOTES***
+
+
+writing program
+	SYNTAX
+
+		#include <stdio.h>
+		int main(int argc, char * argv[]) 
+		{
+
+
+			return 0;
+		}
+
+
+	int main() {}
+		this is initialising the main function
+
+	return
+		must return a value. In the above example, must return integer
+
+
+
+
+printf placeholder
+	placeholders are used when you wont to print in variables in your string
+	
+	eg
+		printf("This is an integer %d\n", &x)
+
+	this command prints a string with %d as an integer. It will take the value of x if it is an integer.
+	If it's not an integer then it would have error
+
+	%c 	 character
+	%f 	 floating point number ( decimal place )
+	%d 	 integer
+	%lf  double
+	%s   string
+	%p   pointer ----> pointer can be in any datatype
+
+
+	printf requires you to specify the number of characters allowed, and number of decimal places
+
+		eg
+			%10.2f
+
+		this means that the character printed would be a float, with a given space of 10 characters, and only 2 decimal places
+		If there are more decimal places than given, the overflow would not be shown
+		But if there are more characters than given, overflow would still be shown 
+		but when printed, it still occupies the set character size
+
+		If there are incompatible characters in the scanf, eg letters in a %f, then the letters would be hidden
+
+	printf flags
+		when using %s to represent a string, you can add flags to edit the formatting of the string
+			eg
+				%-40s
+
+			-  means left align
+			40 means maximum width of 40 characters
+
+
+
+scanf
+	eg
+		scanf(" %s", x);
+	when you put a space before your placeholder, it indicates that the scanf would ignore all white spaces 
+
+
+getting user input
+	
+	scanf()
+		good for basic user input. No validation
+
+		eg
+			scanf("%d", &x)
+
+		"%d"  this is the placehoder
+		&x 	  this is where to store the input. X is the variable. & means memory location of
+
+
+	fgets() + sscanf()
+		fgets reads a source and puts it into a char array. It can read user input
+		sscanf() can then read the char array from fgets(), and only take the values specified by the placeholder
+
+		eg
+			fgets(tmpbuf, MAX, stdin)  		tmpbuf is where it will store the read input
+											MAX is the size of the char array; in this case, its tmpbuf
+											stdin is the source to read. stdin means keyboard input
+
+			sscanf(tmpbuf, %d, &x)			tmpbuf is where it will read
+											%d is what type of value it will read
+											&x is where it will store the values 
+
+
+
+	argc
+
+	getchar()
+		only accepts keyboard input. Accepts 1 character only
+	
+
+
+compiling the program
+	
+	1. go into the linux terminal
+	2. cd to the location of the file
+	3. compile using this command
+		cc -o file file.c
+
+	   file is the new file u want to save this binary code
+	   file.c is the source code
+	   
+	4. run using this command
+		./file.c
+
+LOOPS
+
+	if using nested loops, add comments to explain what it does
+
+	for loop
+		must declare variables outside of the loop to use
+
+	break and continue
+		break is used to quit loop
+		continue is to re-enter the loop 
+
+ORDER OR PRECEDENCE
+	same as Java
+
+GLOBAL VARIABLES
+	only global variables that are not delcared and initialised in the main method are given default values, not random value
+
+
+
+***trick question ( scope rules )
+
+int x =0;
+void main ()
+{
+	printf("%d", x);
+}
+
+	the program would print x as 0 even though x is not declared inside the main function. The compiler would keep checking the previous hiearchy until it finds the declared variable
+
+READING AN INPUT FILE TO RETRIEVE DATA
+
+1. include the I/O library for the commands
+	#include <stdlib.h>
+
+
+
+isdigit()
+	???
+
+
+FUNCTION RETURN VALUES
+	if you don't state a return value, it is int by default. but because you didn't specify what the return, the system reserves a memory space for the return value. This wastes space.
+
+	if returning a float value, indicate that it is float
+		eg
+
+		float main()
+		{
+			return 0.5;
+		}
+
+	the compiler will read 0.5 as a double. So instead,
+
+		float main()
+		{
+			return o.5f;
+		}
+
+	put the f on the right to indicate that it's a float
+
+FUNCTION HEADERS
+	think of header before body
+
+
+
+FUNCTION PROTOTYPES = FUNCTION SIGNATURE
+	if you call a function before it has been delcared and initialised, you must use a Function signature
+
+		eg
+			void main()
+			{
+				call(5);
+			}
+
+			int call(int x)
+			{
+				return x;
+			}
+
+	this wouldn't work because when call(); is called, it has not been declared. Only declared and initialised at the bottom.
+	Instead, add a Function signature.
+
+		eg
+			void call(int );			<---- Function Signature
+			int main()
+			{
+				call(5);
+			}
+
+			int call(int x)
+			{
+				return x;
+			}
+
+
+POINTERS
+	to declare pointer, use *
+
+		eg
+			int * i_ptr			<--- integer pointer named i_ptr
+			float * f_ptr		<--- float pointer named f_ptr
+			void * g_ptr		<--- void pointer named g_ptr
+
+	what is void pointer ? It is a generic pointer. It can accept other data types but it increases compile time since data type is not specified, so the compiler takes time to figure out whic data type it is pointing to
+
+	When you take a pointer + 1, it does not add 1 to the value of where it is pointing to. Instead, it would point to the next address. So if pointer is pointing to array value [0], then when +1, it would point to [1]. But if its not an array, only a single value variable, then the pointer would point to nothing. seg fault core dump error. Same applies for subtraction.
+
+
+&
+	this denotes the memory location of a specified variable
+
+
+	to delcare and initialise a pointer, it needs an actual variable to be pointed to
+
+		eg
+			int x=5;
+			int * ptr= &x;
+
+	the pointer would now point to x, which points to 5. This is known as indirect addressing
+
+
+
+ARRAY
+	when you call an array but only call by its first name, the compiler would read it as the memeory address of the first element in the array
+		eg
+			int arr[5];
+			arr = 5; // same as &arr[0] = 5
+
+	Array cannot be parsed into a function so instead, you parse the pointer
+
+	tmpbuf should be an array of char no matter what
+
+READING FROM A FILE THROUGH COMMAND LINE ARGUMENTS
+	to do this use the function fopen

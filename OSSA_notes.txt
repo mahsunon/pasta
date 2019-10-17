@@ -1,0 +1,52 @@
+OSSA notes
+
+
+- must know IPv4 stuff like class and range wtv
+- read up ARP
+- read up 4 way TCP coms
+- must know whois
+- read up application protocol awareness proxy
+- must know how to view tripwire reports
+- nessus is a Vulnerability Asessment scan
+- 'all in one' nmap ?
+- read up snort conf file
+
+
+
+
+
+
+
+- illogical combination of services = honeypot
+- by default the reply to SYN is RST. This means PC is tunred on but no app is listening
+- route -n
+	find gateway address
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+Ping Sweep & Port Scanning
+	Use nmap to do ping sweep and port scanning at the same time
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+	-sT 
+		does a scan on TCP ports
+
+	-sS 
+		does a TCP SYN scan which send packets only with SYN flag aka Stealth Scan
+
+	-p<port range> 
+		scan specified ports
+
+	-sV 
+		does a banner grab on all ports
+
+	-O 
+		display all the probability of OS used (look at Running)
+
+	-sU 
+		does a scan on UDP ports

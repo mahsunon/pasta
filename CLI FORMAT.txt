@@ -1,0 +1,87 @@
+Issue
+		Was roger liable under Section 7 of the CMA for sending 1000 emails to the Registry of Marriage and causing the email server at the Ministry of Social and Family Development to slow down?
+
+	Law
+		Section 7 of the CMA unauthorized Obstruction of Use of Computer
+		Elements:
+			-	Knowingly
+			-	Without authority
+			-	Interferes with
+			-	impedes	
+
+
+	Application
+		Roger had knowingly and without any authority, sent 1000 emails to the registry of marriage that interfered with and impeded the email server at the ministry of social and family development, a protected computer
+		
+		An example can be seen in PP v Tan Cheng Kang (2000)
+
+
+	Conclusion
+		Roger was liable under section 7 of the CMA for sending 1000 emails to the registry of marriage and causing the email server at the ministry of social and family development to slow down.
+		
+	Punishment
+		Roger was liable to receive a maximum punishment of:
+			-	section 7 read with section 9 
+			-	fine not exceeding $100,000
+			-	jail term not exceeding 20 years
+			-	or to both
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(i)	 Issue
+		Was Josh liable under Section 3 of the CMA when he entered his best friend’s personal account on social network SmileNetwork without authority ?
+
+(ii)	Law/Legal Practices
+		Section 3 of CMA
+			Unauthorised Access to Computer Material
+			Elements:
+			-	Knowingly
+			-	Causes a computer to perform any function
+			-	Securing access
+			-	Without authority
+
+(iii)	Application
+		Under section 3 of the CMA, Josh Knowingly caused a computer to perform a function that provided his access to his best friend’s personal account on social network without authority.
+
+		An example of this can be seen in the case PP v Lim Siong Khee (2001) where Lim was convicted after trial on a charge of knowingly causing an email server to perform a function for the purpose of securing unauthorised access to Ms Chong’s email account.
+
+		Conclusion
+			Josh was liable under Section 3 of the CMA when he entered his best friend’s personal account on social network SmileNetwork without authority
+
+		Punishment
+			Therefore, Josh had committed an offense under Section 3 of the CMA and he was liable to receive a maximum punishment of 
+			-	Fine not exceeding $5000
+			-	Jail term not exceeding 2 years
+			-	Or to both	 
+
+
